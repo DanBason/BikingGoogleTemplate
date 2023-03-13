@@ -20,6 +20,21 @@ import jwt
 from time import time
 from bson.objectid import ObjectId
 
+class College(UserMixin, Document):
+    college_name = StringField()
+    college_size = IntField()
+    location = StringField()
+    picture = FileField()
+    state = StringField()
+    town = StringField()
+    create_date = DateTimeField(default=dt.datetime.utcnow)
+    modify_date = DateTimeField()
+
+    meta = {
+        'ordering': ['-createdate']
+    }
+
+
 class User(UserMixin, Document):
     createdate = DateTimeField(defaultdefault=dt.datetime.utcnow)
     gid = StringField(sparse=True, unique=True)
@@ -31,6 +46,8 @@ class User(UserMixin, Document):
     email = EmailField()
     image = FileField()
     prononuns = StringField()
+    role = StringField()
+    anotherole = StringField()
 
     meta = {
         'ordering': ['lname','fname']
@@ -43,6 +60,7 @@ class Blog(Document):
     tag = StringField()
     create_date = DateTimeField(default=dt.datetime.utcnow)
     modify_date = DateTimeField()
+    newfield = StringField()
 
     meta = {
         'ordering': ['-createdate']
