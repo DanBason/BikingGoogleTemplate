@@ -16,10 +16,10 @@
         <form method=post>
             {{ form.hidden_tag() }}
             
-            {{ form.field.label }} <br>
-            {{ form.field(size=64) }}
+            {{ form.college_name.label }} <br>
+            {{ form.college_name(size=64) }}
             <!--List the errors for this field-->
-            {% for error in form.field.errors %}
+            {% for error in form.college_name.errors %}
                 <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
 

@@ -14,7 +14,7 @@ class ProfileForm(FlaskForm):
     image = FileField("Image") 
     submit = SubmitField('Post')
     role = SelectField('Role',choices=[("Teacher","Teacher"),("User","User")])
-    anotherole = SelectField('Role',choices=[("Alumni","Alumni"),("Current Student","Student")])
+    anotherole = SelectField('Role',choices=[("Alumni","Alumni"),("Current Student","Current Student")])
 
 class BlogForm(FlaskForm):
     subject = StringField('Subject', validators=[DataRequired()])
@@ -34,3 +34,4 @@ class CollegeForm(FlaskForm):
     picture = FileField("picture")
     state = StringField('state')
     town = StringField("town")
+    submit = SubmitField("college_name")

@@ -7,7 +7,7 @@ from app.classes.forms import CollegeForm, BlogForm, CommentForm
 from flask_login import login_required
 import datetime as dt
 
-@app.route('/college/new', methods=['GET', 'POST'])
+@app.route('/college/new', methods=['GET'])
 @login_required
 # This is a function that is run when the user requests this route.
 def collegeNew():
