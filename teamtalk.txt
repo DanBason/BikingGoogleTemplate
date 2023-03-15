@@ -1,0 +1,4 @@
+Daniel: CRUD 
+Aidan: CRUD
+Isaiah: 
+Ruby:
