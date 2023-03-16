@@ -31,11 +31,12 @@ def profileEdit():
         # if the form was valid then this gets an object that represents the currUser's data
         currUser = User.objects.get(id=current_user.id)
         # This updates the data on the user record that was collected from the form
+        #  anotherole = form.role.data
         currUser.update(
             lname = form.lname.data,
             fname = form.fname.data,
             role = form.role.data,
-            anotherole = form.role.data
+            
         )
         # This updates the profile image
         if form.image.data:
@@ -49,9 +50,11 @@ def profileEdit():
 
     # If the form was not submitted this prepopulates a few fields
     # then sends the user to the page with the edit profile form
+
+    # form.anotherole.data = current_user.anotherrole
     form.fname.data = current_user.fname
     form.lname.data = current_user.lname
     form.role.data = current_user.role
-    form.anotherole.data = current_user.anotherrole
+    
 
     return render_template('profileform.html', form=form)
