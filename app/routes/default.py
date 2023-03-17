@@ -22,3 +22,7 @@ def index():
 @login_required
 def profile():
     return render_template('profilemy.html')
+
+@app.route('/college')
+def college():
+    return render_template('college.html')
