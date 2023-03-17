@@ -1,8 +1,80 @@
 <!-- This is a blank template.  You can copy this to make a new template page. -->
 
 {% extends 'base.html' %}
+<head>
+    <title>List of Boxes</title>
+    <style>
+      /* Box styles */
+      .box {
+        width: 100px;
+        height: 100px;
+        background-color: #ccc;
+        border: 1px solid #999;
+        margin: 10px;
+        display: inline-block;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>List of Boxes</h1>
+    <div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+    </div>
+  </body>
+</html>
+
+  
+
 
 {% block body %}
+<h1>College List</h1><br>
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>List of Text Boxes</title>
+    <style>
+      /* Box styles */
+      .box {
+        width: 200px;
+        height: 50px;
+        border: 1px solid #999;
+        margin: 10px;
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>List of Text Boxes</h1>
+    <form>
+      <div>
+        <input type="text" name="box1" class="box" placeholder="Box 1">
+      </div>
+      <div>
+        <input type="text" name="box2" class="box" placeholder="Box 2">
+      </div>
+      <div>
+        <input type="text" name="box3" class="box" placeholder="Box 3">
+      </div>
+      <div>
+        <input type="text" name="box4" class="box" placeholder="Box 4">
+      </div>
+      <div>
+        <input type="text" name="box5" class="box" placeholder="Box 5">
+      </div>
+    </form>
+  </body>
+</html>
+
+
+
+
+
+
 
 {% endblock %}
 
