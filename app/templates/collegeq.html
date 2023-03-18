@@ -1,0 +1,59 @@
+<!-- This is a blank template.  You can copy this to make a new template page. -->
+
+{% extends 'base.html' %}
+
+{% block body %}
+<h1>Test</h1>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Questionnaire</title>
+</head>
+<body>
+	<form id="questionnaire">
+		<label for="name">Name:</label>
+		<input type="text" id="name" name="name"><br>
+
+		<label for="age">Age:</label>
+		<input type="number" id="age" name="age"><br>
+
+		<label for="gender">Gender:</label>
+		<select id="gender" name="gender">
+			<option value="male">Male</option>
+			<option value="female">Female</option>
+			<option value="other">Other</option>
+		</select><br>
+
+		<label for="feedback">Feedback:</label>
+		<textarea id="feedback" name="feedback"></textarea><br>
+
+		<input type="submit" value="Submit">
+	</form>
+
+	<script>
+		const form = document.getElementById('questionnaire');
+		form.addEventListener('submit', (event) => {
+			event.preventDefault();
+			const data = new FormData(form);
+			const formData = {};
+			for (const pair of data.entries()) {
+				formData[pair[0]] = pair[1];
+			}
+			localStorage.setItem('questionnaireData', JSON.stringify(formData));
+			alert('Form data saved!');
+			form.reset();
+		});
+
+		// pre-fill the form with saved data
+		const savedData = JSON.parse(localStorage.getItem('questionnaireData'));
+		if (savedData) {
+			document.getElementById('name').value = savedData.name;
+			document.getElementById('age').value = savedData.age;
+			document.getElementById('gender').value = savedData.gender;
+			document.getElementById('feedback').value = savedData.feedback;
+		}
+	</script>
+</body>
+</html>
+
+{% endblock %}

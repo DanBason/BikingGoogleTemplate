@@ -26,3 +26,13 @@ def profile():
 @app.route('/college')
 def college():
     return render_template('college.html')
+
+@app.route('/collegeq')
+def collegequestions():
+    return render_template('collegeq.html')
+
+@app.route('/messageroom')
+def collegequestions():
+    return render_template('messageroom.html')
+
+

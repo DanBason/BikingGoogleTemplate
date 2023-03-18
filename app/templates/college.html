@@ -33,43 +33,37 @@
 {% block body %}
 <h1>College List</h1><br>
 
+<a href="/collegeq"><button>Go to Other Page</button></a>
+<a href="/messageroom"><button>Go to Other Page</button></a>
+
+
+
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>List of Text Boxes</title>
-    <style>
-      /* Box styles */
-      .box {
-        width: 200px;
-        height: 50px;
-        border: 1px solid #999;
-        margin: 10px;
-        display: block;
-      }
-    </style>
-  </head>
-  <body>
-    <h1>List of Text Boxes</h1>
-    <form>
-      <div>
-        <input type="text" name="box1" class="box" placeholder="Box 1">
-      </div>
-      <div>
-        <input type="text" name="box2" class="box" placeholder="Box 2">
-      </div>
-      <div>
-        <input type="text" name="box3" class="box" placeholder="Box 3">
-      </div>
-      <div>
-        <input type="text" name="box4" class="box" placeholder="Box 4">
-      </div>
-      <div>
-        <input type="text" name="box5" class="box" placeholder="Box 5">
-      </div>
-    </form>
-  </body>
-</html>
+<head>
+	<title>Questionnaire Data</title>
+</head>
+<body>
+	<h1>Questionnaire Data</h1>
+	<p><strong>Name:</strong> <span id="name"></span></p>
+	<p><strong>Age:</strong> <span id="age"></span></p>
+	<p><strong>Gender:</strong> <span id="gender"></span></p>
+	<p><strong>Feedback:</strong></p>
+	<p><span id="feedback"></span></p>
 
+	<script>
+		// retrieve saved data from localStorage
+		const savedData = JSON.parse(localStorage.getItem('questionnaireData'));
+		if (savedData) {
+			// populate fields with saved data
+			document.getElementById('name').textContent = savedData.name;
+			document.getElementById('age').textContent = savedData.age;
+			document.getElementById('gender').textContent = savedData.gender;
+			document.getElementById('feedback').textContent = savedData.feedback;
+		}
+	</script>
+</body>
+</html>
 
 
 
