@@ -31,8 +31,8 @@ def college():
 def collegeq():
     return render_template('collegeq.html')
 
-@app.route('/messageroom')
+@app.route('/message.html')
 def collegequestions():
-    return render_template('messageroom.html')
+    return render_template('message.html')
 
 
