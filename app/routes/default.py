@@ -28,7 +28,7 @@ def college():
     return render_template('college.html')
 
 @app.route('/collegeq')
-def collegequestions():
+def collegeq():
     return render_template('collegeq.html')
 
 @app.route('/messageroom')
