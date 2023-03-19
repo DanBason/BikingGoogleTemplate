@@ -1,4 +1,5 @@
 from app import app
+
 from flask import render_template
 from flask_login import (
     current_user,
@@ -32,6 +33,7 @@ def collegeq():
     return render_template('collegeq.html')
 
 @app.route('/message.html')
+@login_required
 def collegequestions():
     return render_template('message.html')
 

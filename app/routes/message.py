@@ -10,11 +10,13 @@ import datetime as dt
 from flask import Flask, render_template, request
 from flask_socketio import SocketIO, send, emit 
 
+current_username = []
+
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret!'
 socketio = SocketIO(app)
 # need to connect the logged in user to users
-users = []
+
 
 @app.route('/')
 def index():

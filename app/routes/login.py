@@ -14,7 +14,8 @@ import requests
 from app.classes.data import User
 from app.utils.secrets import getSecrets
 import mongoengine.errors
-import messages
+from message import current_username
+
 
 #get all the credentials for google
 secrets = getSecrets()
@@ -122,7 +123,7 @@ def callback():
         gname = userinfo_response.json()["name"]
         gfname = userinfo_response.json()["given_name"]
         glname = userinfo_response.json()["family_name"]
-        users.append(gmail)
+        current_username.append(gmail)
     else:
         return "User email not available or not verified by Google.", 400
 
