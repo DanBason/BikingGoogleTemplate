@@ -42,6 +42,9 @@ def collegequestions():
 @app.route('/collegelist')
 def collegelist():
     return render_template('collegelist.html')
-    
+
+@app.route('/collegeforum')
+def collegeforum():
+    return render_template('questionpage.html')
 
 
