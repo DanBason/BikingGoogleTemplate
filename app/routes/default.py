@@ -11,6 +11,15 @@ from oauthlib.oauth2 import WebApplicationClient
 
 
 # This is for rendering the home page
+app.route('/new_question')
+@login_required
+def new_question():
+    return render_template('new_question.html')
+
+app.route('/new_answer')
+@login_required
+def new_answer():
+    return render_template('new_answer.html')
 
 @app.route('/aboutus')
 def aboutus():
@@ -35,7 +44,7 @@ def collegeq():
 
 @app.route('/message')
 @login_required
-def collegequestions():
+def message():
     
     return render_template('message.html')
 
@@ -43,8 +52,8 @@ def collegequestions():
 def collegelist():
     return render_template('collegelist.html')
 
-@app.route('/collegeforum')
-def collegeforum():
+@app.route('/questionpage')
+def questionpage():
     return render_template('questionpage.html')
 
 

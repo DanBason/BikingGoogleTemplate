@@ -3,7 +3,7 @@ from app import app, db
 from classes import Question, Answer
 from forms import QuestionForm, AnswerForm
 
-@app.route('/question/new', methods=['GET', 'POST'])
+@app.route('question/new', methods=['GET', 'POST'])
 def new_question():
     form = QuestionForm()
     if form.validate_on_submit():
