@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>New Answer</h1>
+  <form method="POST" action="{{ url_for('create_answer', question_id=question_id) }}">
+    {{ form.hidden_tag() }}
+    <div class="form-group">
+      {{ form.content.label }}<br>
+      {{ form.content(rows=10, cols=50) }}
+    </div>
+    <button type="submit" class="btn btn-primary">Post Answer</button>
+  </form>
+{% endblock %}

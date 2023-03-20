@@ -1,7 +1,9 @@
 # This file is where data entry forms are created. Forms are placed on templates 
 # and users fill them out.  Each form is an instance of a class. Forms are managed by the 
 # Flask-WTForms library.
-
+from flask_wtf import FlaskForm
+from wtforms import TextAreaField, SubmitField
+from wtforms.validators import DataRequired
 from flask_wtf import FlaskForm
 import mongoengine.errors
 from wtforms.validators import URL, Email, DataRequired
@@ -35,3 +37,9 @@ class CollegeForm(FlaskForm):
     state = StringField('state')
     town = StringField("town")
     submit = SubmitField("college_name")
+
+
+
+class AnswerForm(FlaskForm):
+    answer = TextAreaField('Your Answer', validators=[DataRequired()])
+    submit = SubmitField('Submit')

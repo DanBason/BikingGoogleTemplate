@@ -8,7 +8,6 @@ from sys import getprofile
 from tokenize import String
 from typing import KeysView
 from xmlrpc.client import Boolean
-
 from setuptools import SetuptoolsDeprecationWarning
 from app import app
 from flask import flash
@@ -19,6 +18,19 @@ import datetime as dt
 import jwt
 from time import time
 from bson.objectid import ObjectId
+
+from flask import Flask
+from flask_mongoengine import MongoEngine
+
+app = Flask(__name__)
+app.config['MONGODB_SETTINGS'] = {
+    'db': 'mydatabase',
+    'host': 'localhost',
+    'port': 27017
+}
+
+db = MongoEngine(app)
+
 
 class College(UserMixin, Document):
     college_name = StringField()
@@ -80,3 +92,18 @@ class Comment(Document):
     meta = {
         'ordering': ['-createdate']
     }
+
+class Question(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(100), nullable=False)
+    content = db.Column(db.Text, nullable=False)
+    date_posted = db.Column(db.DateTime, nullable=False, default=dt.datetime.utcnow)
+    author_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    answers = db.relationship('Answer', backref='question', lazy=True)
+
+class Answer(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    content = db.Column(db.Text, nullable=False)
+    date_posted = db.Column(db.DateTime, nullable=False, default=dt.datetime.utcnow)
+    author_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    question_id = db.Column(db.Integer, db.ForeignKey('question.id'), nullable=False)

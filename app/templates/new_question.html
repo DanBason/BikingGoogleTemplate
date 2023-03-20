@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>New Question</h1>
+  <form method="POST" action="{{ url_for('create_question') }}">
+    {{ form.hidden_tag() }}
+    <div class="form-group">
+      {{ form.title.label }}<br>
+      {{ form.title(size=50) }}
+    </div>
+    <div class="form-group">
+      {{ form.content.label }}<br>
+      {{ form.content(rows=10, cols=50) }}
+    </div>
+    <button type="submit" class="btn btn-primary">Post Question</button>
+  </form>
+{% endblock %}
