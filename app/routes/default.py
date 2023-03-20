@@ -33,11 +33,18 @@ def college():
 def collegeq():
     return render_template('collegeq.html')
 
-@app.route('/message.html')
+@app.route('/message')
 @login_required
 def collegequestions():
     
     return render_template('message.html')
-    
+
+@app.route('/collegelist')
+def collegelist():
+    return render_template('collegelist.html')
+
+@app.route('/collegeforum')
+def collegeforum():
+    return render_template('questionpage.html')
 
 
