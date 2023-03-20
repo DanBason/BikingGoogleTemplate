@@ -9,6 +9,7 @@ from flask_login import (
 )
 from oauthlib.oauth2 import WebApplicationClient
 
+
 # This is for rendering the home page
 
 @app.route('/aboutus')
@@ -35,6 +36,8 @@ def collegeq():
 @app.route('/message.html')
 @login_required
 def collegequestions():
+    print(current_username)
     return render_template('message.html')
+    
 
 
