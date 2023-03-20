@@ -1,6 +1,6 @@
 
 from app import app
-import mongoengine.errors
+
 from flask import render_template, flash, redirect, url_for
 from flask_login import current_user
 from app.classes.data import Blog, Comment
@@ -10,7 +10,7 @@ import datetime as dt
 from flask import Flask, render_template, request
 from flask_socketio import SocketIO, send, emit 
 
-current_username = []
+users = []
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret!'
