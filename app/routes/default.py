@@ -36,7 +36,7 @@ def collegeq():
 @app.route('/message.html')
 @login_required
 def collegequestions():
-    print(current_username)
+    
     return render_template('message.html')
     
 
