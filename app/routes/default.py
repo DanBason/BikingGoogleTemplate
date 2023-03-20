@@ -33,7 +33,7 @@ def college():
 def collegeq():
     return render_template('collegeq.html')
 
-@app.route('/message.html')
+@app.route('/message')
 @login_required
 def collegequestions():
     
