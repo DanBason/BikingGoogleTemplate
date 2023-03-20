@@ -38,6 +38,10 @@ def collegeq():
 def collegequestions():
     
     return render_template('message.html')
+
+@app.route('/collegelist')
+def collegeq():
+    return render_template('collegelist.html')
     
 
 
