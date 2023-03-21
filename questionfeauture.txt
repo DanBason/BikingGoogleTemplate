@@ -1,0 +1,27 @@
+
+
+Sure, here's an outline of how to create a feature that allows users to post questions and respond to them using MongoDB:
+Create a Question model and a Response model with the necessary fields in your application.
+ The Question model should have fields for the title, content, author, date posted, and responses.
+ The Response model should have fields for the content, author, and date posted.
+
+Create routes for creating a new question and for creating a new response. 
+These routes should accept POST requests and handle the form data that is submitted. 
+In your route functions, you can create new instances of the Question and Response models
+ and save them to the database using the MongoDB driver.
+
+Create a route for displaying a single question and its responses. 
+This route should accept a GET request and retrieve the appropriate Question object and all of 
+its associated Response objects from the database using the MongoDB driver.
+
+Create a template for displaying a single question and its responses.
+ In this template, you can use Jinja2 to display the question and all
+  of its associated responses.
+
+Add links to the question and response creation pages in your application's navigation menu or sidebar.
+
+Update your application's home page to display a list of the most recent questions that have been posted, 
+along with a link to the page that displays each question and its responses.
+
+With these steps, you should be able to create a feature that allows users to post
+ questions and respond to them using MongoDB as the database.

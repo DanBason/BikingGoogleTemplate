@@ -1,6 +1,6 @@
 from app import app
 
-from flask import render_template
+from flask import Flask, render_template, request, redirect, url_for
 from flask_login import (
     current_user,
     login_required,
@@ -11,15 +11,10 @@ from oauthlib.oauth2 import WebApplicationClient
 
 
 # This is for rendering the home page
-app.route('/new_question')
-@login_required
-def new_question():
-    return render_template('new_question.html')
 
-app.route('/new_answer')
-@login_required
-def new_answer():
-    return render_template('new_answer.html')
+
+
+
 
 @app.route('/aboutus')
 def aboutus():
@@ -52,8 +47,5 @@ def message():
 def collegelist():
     return render_template('collegelist.html')
 
-@app.route('/questionpage')
-def questionpage():
-    return render_template('questionpage.html')
 
 
