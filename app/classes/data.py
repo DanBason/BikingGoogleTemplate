@@ -16,14 +16,7 @@ import mongoengine
 from flask import Flask
 from flask_mongoengine import MongoEngine
 
-app = Flask(__name__)
-app.config['MONGODB_SETTINGS'] = {
-    'default': 'mydatabase',
-    'host': 'localhost',
-    'port': 27017
-}
-mongoengine.connect(db="my_db", alias="my_alias")
-default = mongoengine.connection.get_db(alias="my_alias")
+
 
 
 class College(UserMixin, Document):
