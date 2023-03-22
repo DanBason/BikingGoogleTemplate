@@ -1,0 +1,32 @@
+<!-- This is a blank template.  You can copy this to make a new template page. -->
+<!--This page displays profile information-->
+
+{% extends 'base.html' %}
+
+{% block body %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{ user.name }}'s Profile</title>
+  </head>
+  <body>
+    <h1>{{ user.name }}'s Profile</h1>
+    
+    <h2>About Me</h2>
+    <p>{{ user.bio }}</p>
+    
+    <h2>Contact Information</h2>
+    <ul>
+      <li>Email: {{ user.email }}</li>
+    </ul>
+    
+    <h2>Profile Picture</h2>
+    {% if user.profile_picture %}
+    <img src="data:image/png;base64,{{ user.profile_picture }}" alt="{{ user.name }}'s Profile Picture">
+    {% else %}
+    <p>No profile picture available.</p>
+    {% endif %}
+  </body>
+</html>
+
+{% endblock %}

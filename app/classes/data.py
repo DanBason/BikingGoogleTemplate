@@ -3,7 +3,7 @@ from tokenize import String
 from typing import KeysView
 from xmlrpc.client import Boolean
 from setuptools import SetuptoolsDeprecationWarning
-from app import app
+
 from flask import flash
 from flask_login import UserMixin
 from mongoengine import FileField, EmailField, StringField, IntField, ReferenceField, DateTimeField, BooleanField, CASCADE
@@ -16,14 +16,7 @@ import mongoengine
 from flask import Flask
 from flask_mongoengine import MongoEngine
 
-app = Flask(__name__)
-app.config['MONGODB_SETTINGS'] = {
-    'default': 'mydatabase',
-    'host': 'localhost',
-    'port': 27017
-}
-mongoengine.connect(db="my_db", alias="my_alias")
-default = mongoengine.connection.get_db(alias="my_alias")
+
 
 
 class College(UserMixin, Document):

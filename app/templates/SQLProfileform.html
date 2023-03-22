@@ -1,0 +1,20 @@
+
+<form method="POST" action="{{ url_for('add_user') }}" enctype="multipart/form-data">
+    <label for="name">Name:</label>
+    <input type="text" name="name" required>
+    
+    <label for="email">Email:</label>
+    <input type="email" name="email" required>
+    
+    <label for="bio">Bio:</label>
+    <textarea name="bio"></textarea>
+    
+    <label for="profile_picture">Profile Picture:</label>
+    <input type="file" name="profile_picture">
+    
+    <input type="submit" value="Submit">
+  </form>
+
+
+
+  
