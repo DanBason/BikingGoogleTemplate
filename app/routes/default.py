@@ -21,7 +21,7 @@ import sqlite3
 def aboutus():
     return render_template('aboutus.html')
 
-@app.route('/')
+@app.route('/home')
 def index():
     return render_template('index.html')
 
