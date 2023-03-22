@@ -30,14 +30,7 @@
                 {% endfor %}
             </p>
             <!--Below needs rewrite, have to figure out how comment will function-->
-            <p>
-                {{ form.content.label }} <br>
-                {{ form.content(size=64) }}
-                <!--List the errors for this field-->
-                {% for error in form.subject.errors %}
-                    <span style="color: red;">[{{ error }}]</span>
-                {% endfor %}
-            </p>
+            
             <p>
                 {{form.submit()}}
             </p>
