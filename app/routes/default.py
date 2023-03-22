@@ -48,6 +48,7 @@ def message():
 def collegelist():
     return render_template('collegelist.html')
 
+
 @app.route('/add_user', methods=['POST'])
 def add_user():
     name = request.form['name']
@@ -81,5 +82,6 @@ def profile_SQL(user_id):
     conn.close()
     
     return render_template('profile.html', user=user)
+
 
 
