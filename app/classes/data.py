@@ -3,7 +3,7 @@ from tokenize import String
 from typing import KeysView
 from xmlrpc.client import Boolean
 from setuptools import SetuptoolsDeprecationWarning
-from app import app
+
 from flask import flash
 from flask_login import UserMixin
 from mongoengine import FileField, EmailField, StringField, IntField, ReferenceField, DateTimeField, BooleanField, CASCADE
