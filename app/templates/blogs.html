@@ -1,44 +1,65 @@
+
 {% extends 'base.html' %}
 
 {% block body %}
-
-<div class="row">
-    <div class="col-4">
-        <h1 class="display-1">All Blogs</h1>
+<head>
+    <meta charset="UTF-8">
+    <title>My Page Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+  <div class="container">
+    <div class="row justify-content-between align-items-center">
+      <div class="col">
+        <h1 class="display-4 mb-4">All Blogs</h1>
+      </div>
+      <div class="col-auto">
+        <a href="/blog/new" class="btn btn-primary btn-sm" role="button">New Blog</a>
+      </div>
     </div>
-    <div class="col">
-        <a href="/blog/new" class="btn btn-primary btn-sm mt-5" role="button">New Blog</a>
-    </div>
-</div>
 
-{% if blogs %}
-    {% for blog in blogs %}
-        <div class="row border-bottom">
-            <div class="col-2">
-                {% if loop.index == 1 %}
-                <h3 class="display-5">Date</h3>
-                {% endif %}
-
-                <a href="/blog/{{blog.id}}">
-                    {{moment(blog.create_date).calendar()}}
-                </a>
-            </div>
-            <div class="col-2">
-                {% if loop.index == 1 %}
-                <h3 class="display-5">User</h3>
-                {% endif %}
-                {{blog.author.fname}} {{blog.author.lname}}
-            </div>
-            <div class="col">
-                {% if loop.index == 1 %}
-                    <h3 class="display-5">Subject</h3>
-                {% endif %}
-                {{blog.subject}}
-            </div>
+    {% if blogs %}
+      <div class="row mb-4">
+        <div class="col-2">
+          <h3 class="h6">Date</h3>
         </div>
-    {% endfor %}
-{% else %}
-    <h1>No Blogs</h1>
-{% endif %}
+        <div class="col-2">
+          <h3 class="h6">User</h3>
+        </div>
+        <div class="col">
+          <h3 class="h6">Subject</h3>
+        </div>
+        <div class="col-2">
+          <h3 class="h6">Actions</h3>
+        </div>
+      </div>
 
+      {% for blog in blogs %}
+        <div class="row border-bottom mb-4">
+          <div class="col-2">
+            <span class="text-muted">{{ moment(blog.create_date).calendar() }}</span>
+          </div>
+          <div class="col-2">
+            <span>{{ blog.author.fname }} {{ blog.author.lname }}</span>
+          </div>
+          <div class="col">
+            <a href="/blog/{{ blog.id }}" class="text-decoration-none">{{ blog.subject }}</a>
+          </div>
+          {% if blog.author == current_user %}
+            <div class="col-2">
+              <form action="/blog/delete/{{ blog.id }}" method="post">
+                <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+              </form>
+              <form action="/blog/edit/{{ blog.id }}" method="post">
+                <button type="submit" class="btn btn-sm btn-success">Edit</button>
+              </form>
+            </div>
+          {% else %}
+            <div class="col-2"></div>
+          {% endif %}
+        </div>
+      {% endfor %}
+    {% else %}
+      <p>No blogs.</p>
+    {% endif %}
+  </div>
 {% endblock %}

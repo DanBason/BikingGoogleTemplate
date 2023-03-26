@@ -50,7 +50,7 @@ def blog(blogID):
 # <blogID> is a variable sent to this route by the user who clicked on the trash can in the 
 # template 'blog.html'. 
 # TODO add the ability for an administrator to delete blogs. 
-@app.route('/blog/delete/<blogID>')
+@app.route('/blog/delete/<blogID>',methods = ['POST'])
 # Only run this route if the user is logged in.
 @login_required
 def blogDelete(blogID):

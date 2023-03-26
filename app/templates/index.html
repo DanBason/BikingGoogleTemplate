@@ -4,22 +4,30 @@
 
 {% block body %}
 <style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f7f7f7;
+    }
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 50px 20px;
+        text-align: center;
+    }
     h1 {
-        font-size: 70px
-
+        font-size: 48px;
+        margin-bottom: 20px;
     }
     h2 {
-        font-size: 30px
+        font-size: 24px;
+        line-height: 1.5;
+        margin-bottom: 40px;
     }
-    body {
-        font-family: 'Times New Roman', Times, serif;
-        background-size: cover;
-        color: white;
-        background-color: black;
-    }
-  </style>
-<center><h1>Welcome to the Website!</h1></center><br>
+</style>
 
-<h2>The purpose of this website is to connect former tech alumni with current students. By doing so, we hope to give students access to information about colleges that they may not be able to get elsewhere. Students will be able to see where current tech college students are and where former students went. They can ask questions, talk directly to college students, and to other high schoolers.</h2>
+<div class="container">
+    <h1>Welcome to the Website!</h1>
+    <h2>The purpose of this website is to connect former tech alumni with current students. By doing so, we hope to give students access to information about colleges that they may not be able to get elsewhere. Students will be able to see where current tech college students are and where former students went. They can ask questions, talk directly to college students, and to other high schoolers.</h2>
+</div>
 
 {% endblock %}
