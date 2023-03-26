@@ -9,6 +9,10 @@ def AboutUs():
 @app.route('/')
 def index():
     return render_template('index.html')
+
+@app.route('/question')
+def questionpage():
+    return render_template('questions.html')
     
 @app.route('/home')
 def home():
