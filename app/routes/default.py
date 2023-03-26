@@ -12,7 +12,7 @@ def index():
     
 @app.route('/home')
 def home():
-    return render_template('home.html')
+    return render_template('index.html')
 
 @app.route('/college')
 def recipe():
