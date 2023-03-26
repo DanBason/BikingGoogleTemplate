@@ -7,4 +7,4 @@ from app.classes.forms import RecipeForm, CommentForm
 from flask_login import login_required
 import datetime as dt
 
-#  @app.route('/recipe/new', methods=['GET', 'POST'])
+ # @app.route('/college/new', methods=['GET', 'POST'])
