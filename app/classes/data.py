@@ -73,6 +73,8 @@ class College(Document):
     major = StringField()
     tech_grad_year = IntField()
     tags = StringField()
+    create_date = DateTimeField(default=dt.datetime.utcnow)
+    modify_date = DateTimeField()
 
     meta = {
         'ordering': ['-createdate']
