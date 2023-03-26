@@ -26,14 +26,14 @@ class CommentForm(FlaskForm):
     content = TextAreaField('Comment', validators=[DataRequired()])
     submit = SubmitField('Comment')
 
-class RecipeForm(FlaskForm):
-    name = StringField('Recipe Name', validators=[DataRequired()])
-    genre = SelectField('Recipe Genre',choices=[("Breakfast","Breakfast"),("Brunch","Brunch"),("Lunch","Lunch"),("Dinner","Dinner"),("Dessert","Dessert")])
-    author = StringField('Author', validators=[DataRequired()])
+class CollegeForm(FlaskForm):
+    name = StringField('College Name', validators=[DataRequired()])
+    state = StringField('College Statte',validators=[DataRequired()])
+    owner = StringField('Author', validators=[DataRequired()])
     image = FileField()
-    summary = StringField('Recipe summary', validators=[DataRequired()])
-    ingredients = StringField('Ingredients', validators=[DataRequired()])
-    recipe = StringField('Recipe', validators=[DataRequired()])
+    summary = StringField("Summary", validators=[DataRequired()])
+    major = StringField('Major', validators=[DataRequired()])
+    tech_grad_year = IntegerField('Tech Graduation Year', validators=[DataRequired()])
     tags = StringField('Tags', validators=[DataRequired()])
     submit = SubmitField('Post')
    

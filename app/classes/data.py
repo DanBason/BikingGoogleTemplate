@@ -64,14 +64,14 @@ class Comment(Document):
         'ordering': ['-createdate']
     }
 
-class Recipe(Document):
+class College(Document):
     name = StringField()
-    genre = StringField()
-    author = ReferenceField('User', reverse_delete_rule=CASCADE)
+    state = StringField()
+    owner = ReferenceField('User', reverse_delete_rule=CASCADE)
     image = FileField()
     summary = StringField()
-    ingredients = StringField()
-    recipe = StringField()
+    major = StringField()
+    tech_grad_year = IntField()
     tags = StringField()
 
     meta = {

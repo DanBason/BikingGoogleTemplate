@@ -2,9 +2,9 @@ from app import app
 from flask import render_template
 
 # This is for rendering the home page
-@app.route('/AboutUs')
+@app.route('/aboutus')
 def AboutUs():
-    return render_template('AboutUs.html')
+    return render_template('aboutus.html')
 
 @app.route('/')
 def index():
@@ -14,6 +14,6 @@ def index():
 def home():
     return render_template('home.html')
 
-@app.route('/recipe')
+@app.route('/college')
 def recipe():
-    return render_template('recipe.html')
+    return render_template('college.html')
