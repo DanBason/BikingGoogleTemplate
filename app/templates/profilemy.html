@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'baseMain.html' %}
 
 {% block body %}
 <h1 class="display-1">
@@ -18,19 +18,15 @@
     <div class="col display-5">
         {% if current_user.fname and current_user.lname %}
             Name: {{current_user.fname}}  {{current_user.lname}} <br>
-            Role: {{current_user.role}} <br>
-            Another Role: {{current_user.anotherole}} <br>
-
         {% else %}
             Google User Name: {{current_user.gname}} <br>
         {% endif %}
         Email: {{current_user.email}} <br>
-        
 
     </div>
 </div>
 <br>
-
+Role: {{current_user.role}} <br>
 
 
 {% endblock %}

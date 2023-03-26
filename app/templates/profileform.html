@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'baseMain.html' %}
 
 {% block body %}
 
@@ -28,9 +28,6 @@
             {% endfor %}
         </p>
 
-
-
-
         <p>
             {{ form.image.label }}<br>
             {% if current_user.image %}
@@ -47,5 +44,3 @@
     </form>
 
 {% endblock %}
-
-
