@@ -1,10 +1,10 @@
 .footer {
     position: absolute;
     bottom: 0;
-    background-color: #f0f0f0;
+    background-color: #948f8f;
     color: #333;
     font-family: Arial, sans-serif;
-    font-size: 12px;
+    font-size: 20px;
     text-align: center;
     height: 20px;
     padding: 10px;
@@ -15,4 +15,4 @@
     height: 50px; /* Reduce height */
     background-color: #333;
   }
-  
+
