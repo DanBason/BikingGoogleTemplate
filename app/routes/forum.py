@@ -11,7 +11,6 @@ from app.classes.forms import BlogForm, CommentForm
 from flask_login import login_required
 import datetime as dt
 
-
 # This is the route to list all blogs
 @app.route('/blog/list')
 @app.route('/blogs')
@@ -21,6 +20,7 @@ def blogList():
     # This retrieves all of the 'blogs' that are stored in MongoDB and places them in a
     # mongoengine object as a list of dictionaries name 'blogs'.
     blogs = Blog.objects()
+    print(blogs)
     # This renders (shows to the user) the blogs.html template. it also sends the blogs object 
     # to the template as a variable named blogs.  The template uses a for loop to display
     # each blog.

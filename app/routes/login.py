@@ -2,7 +2,7 @@
 # Python standard libraries
 import json
 from app import app, login_manager
-from flask import redirect, request, url_for, flash, make_response
+from flask import redirect, request, url_for, flash
 from flask_login import (
     current_user,
     login_required,
@@ -14,9 +14,6 @@ import requests
 from app.classes.data import User
 from app.utils.secrets import getSecrets
 import mongoengine.errors
-import pickle
-
-
 
 #get all the credentials for google
 secrets = getSecrets()
@@ -44,39 +41,21 @@ def load_user(id):
 def get_google_provider_cfg():
     return requests.get(secrets['GOOGLE_DISCOVERY_URL']).json()
 
-@app.route("/login", methods=["GET", "POST"])
+@app.route("/login")
 def login():
-    if request.method == "POST":
-        # Find out what URL to hit for Google login
-        google_provider_cfg = get_google_provider_cfg()
-        authorization_endpoint = google_provider_cfg["authorization_endpoint"]
+    # Find out what URL to hit for Google login
+    google_provider_cfg = get_google_provider_cfg()
+    authorization_endpoint = google_provider_cfg["authorization_endpoint"]
 
-        # Use library to construct the request for login and provide
-        # scopes that let you retrieve user's profile from Google
-        request_uri = client.prepare_request_uri(
-            authorization_endpoint,
-            redirect_uri=request.base_url + "/callback",
-            scope=["openid", "email", "profile"],
-            prompt="select_account"
-        )
-        remember = request.form.get("remember") == "on"
-        resp = make_response(redirect(request_uri))
-        if remember:
-            # Set the cookie to expire in 30 days
-            resp.set_cookie("remember_token", value="true", max_age=30 * 24 * 60 * 60)
-        else:
-            # Set the cookie to expire when the user closes their browser
-            resp.set_cookie("remember_token", value="false")
-        return resp
-
-    return """
-        <form method="post">
-            <label for="remember">Remember me</label>
-            <input type="checkbox" name="remember" id="remember">
-            <button type="submit">Login with Google</button>
-        </form>
-    """
-
+    # Use library to construct the request for login and provide
+    # scopes that let you retrieve user's profile from Google
+    request_uri = client.prepare_request_uri(
+        authorization_endpoint,
+        redirect_uri=request.base_url + "/callback",
+        scope=["openid", "email", "profile"],
+        prompt="select_account"
+    )
+    return redirect(request_uri)
 
 
 @app.route("/login/callback")
@@ -135,14 +114,12 @@ def callback():
     # The user authenticated with Google, authorized our
     # app, and now we've verified their email through Google!
     if userinfo_response.json().get("email_verified"):
-
         gid = userinfo_response.json()["sub"]
         gmail = userinfo_response.json()["email"]
         gprofile_pic = userinfo_response.json()["picture"]
         gname = userinfo_response.json()["name"]
         gfname = userinfo_response.json()["given_name"]
         glname = userinfo_response.json()["family_name"]
-        
     else:
         return "User email not available or not verified by Google.", 400
 
@@ -178,11 +155,11 @@ def callback():
     login_user(thisUser)
 
     # Send user back to homepage
-    return redirect(url_for("index"))
+    return redirect(url_for('home'))
 
 
 @app.route("/logout")
 @login_required
 def logout():
     logout_user()
-    return redirect(url_for("index"))
+    return redirect(url_for('home'))
