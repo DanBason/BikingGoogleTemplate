@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<div class="row">
+    <div class="col-4">
+        <h1 class="display-1">All Colleges</h1>
+    </div>
+    <div class="col">
+        <a href="/recipe/new" class="btn btn-primary btn-sm mt-5" role="button">New College</a>
+    </div>
+</div>
+
+{% if colleges %}
+    {% for college in colleges %}
+        <div class="row border-bottom">
+            <div class="col-2">
+                {% if loop.index == 1 %}
+                <h3 class="display-5">Date</h3>
+                {% endif %}
+
+                <a href="/college/{{college.id}}">
+                    {{moment(college.create_date).calendar()}}
+                </a>
+            </div>
+            <div class="col-2">
+                {% if loop.index == 1 %}
+                <h3 class="display-5">User</h3>
+                {% endif %}
+                {{college.owner.fname}} {{college.owner.lname}}
+            </div>
+            <div class="col">
+                {% if loop.index == 1 %}
+                    <h3 class="display-5">Subject</h3>
+                {% endif %}
+                {{college.subject}}
+            </div>
+        </div>
+    {% endfor %}
+{% else %}
+    <h1>No Colleges</h1>
+{% endif %}
+
+{% endblock %}
