@@ -6,8 +6,8 @@ from app import app
 import mongoengine.errors
 from flask import render_template, flash, redirect, url_for
 from flask_login import current_user
-from app.classes.data import Question, Comment, Question
-from app.classes.forms import QuestionForm, CommentForm, QuestionForm
+from app.classes.data import Question, Comment
+from app.classes.forms import QuestionForm, CommentForm
 from flask_login import login_required
 import datetime as dt
 
@@ -42,9 +42,9 @@ def question(questionID):
     # there is a field on the comment collection called 'question' that is a reference the question
     # document it is related to.  You can use the questionID to get the question and then you can use
     # the question object (thisquestion in this case) to get all the comments.
-    theseComments = Comment.objects(question=thisQuestion)
+    thoseComments = Comment.objects(question=thisQuestion)
     # Send the question object and the comments object to the 'question.html' template.
-    return render_template('question.html',question=thisQuestion,comments=theseComments)
+    return render_template('question.html',question=thisQuestion,comments=thoseComments)
 
 # This route will delete a specific question.  You can only delete the question if you are the author.
 # <questionID> is a variable sent to this route by the user who clicked on the trash can in the 
@@ -93,7 +93,7 @@ def questionNew():
         # This stores all the values that the user entered into the new question form. 
         # question() is a mongoengine method for creating a new question. 'newquestion' is the variable 
         # that stores the object that is the result of the question() method.  
-        newquestion = Question(
+        newQuestion = Question(
             # the left side is the name of the field from the data table
             # the right side is the data the user entered which is held in the form object.
             subject = form.subject.data,
@@ -104,7 +104,7 @@ def questionNew():
             modify_date = dt.datetime.utcnow
         )
         # This is a method that saves the data to the mongoDB database.
-        newquestion.save()
+        newQuestion.save()
 
         # Once the new question is saved, this sends the user to that question using redirect.
         # and url_for. Redirect is used to redirect a user to different route so that 
@@ -112,7 +112,7 @@ def questionNew():
         # to send them to that question. url_for takes as its argument the function name
         # for that route (the part after the def key word). You also need to send any
         # other values that are needed by the route you are redirecting to.
-        return redirect(url_for('question',questionID=newquestion.id))
+        return redirect(url_for('question',questionID=newQuestion.id))
 
     # if form.validate_on_submit() is false then the user either has not yet filled out
     # the form or the form had an error and the user is sent to a blank form. Form errors are 
