@@ -1,0 +1,36 @@
+Profile Feature:
+    Create way for college students to enter information
+    Figure out file upload (Evan)
+
+Blog:
+    maybe just redesign, same with question
+
+Message Feature
+    CRUD the entire thing and wireframe
+
+Alumni Feature
+    Create a more interactive read
+    Get some tests going with real people (need to figure out email)
+
+Small Things
+    All of Mr. Wrights code should be redesigned (question, aboutus, blog, profile, footer?)
+    Get rid of Test in navbar
+    Make a remember me features
+    Add some images
+
+Announcment Page:
+    CRUD it
+
+Resource Page:
+    CRUD + new data class?
+
+Feedback from Guys Tommorrow?
+
+Things for everyone else?
+    Not sure, maybe CSS?
+    Profile Customization
+
+
+
+
+

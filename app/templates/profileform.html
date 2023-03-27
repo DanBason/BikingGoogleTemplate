@@ -38,9 +38,9 @@
             {% for error in form.image.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
-        </p><br><br>
+        </p>
 
-        <h1>For Current or Former College Students</h1>
+        
         <p>
             {{ form.college_roles.label }}<br>
             {{ form.college_roles() }}<br>
@@ -48,27 +48,8 @@
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
-        <p>
-            {{ form.college.label }}<br>
-            {{ form.college(size=64) }}<br>
-            {% for error in form.college.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        </p>
-        <p>
-            {{ form.major.label }}<br>
-            {{ form.major(size=64) }}<br>
-            {% for error in form.major.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        </p>
-        <p>
-            {{ form.state.label }}<br>
-            {{ form.state() }}<br>
-            {% for error in form.state.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        </p>
+        
+        
         
 
         
