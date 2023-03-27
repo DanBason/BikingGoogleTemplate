@@ -135,6 +135,7 @@ def callback():
                 gprofile_pic=gprofile_pic,
                 fname = gfname,
                 lname = glname
+                
             )
             thisUser.save()
             thisUser.reload()
