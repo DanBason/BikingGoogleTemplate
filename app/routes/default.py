@@ -19,6 +19,10 @@ def index():
 def home():
     return render_template('index.html')
 
+app.route('/parents')
+def parents():
+    return render_template('parents.html')
+
 # the route to all the displayed alumni data
 @app.route('/student_view')
 def college_students():

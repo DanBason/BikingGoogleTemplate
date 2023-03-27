@@ -55,4 +55,7 @@ class CollegeForm(FlaskForm):
     tech_academy = SelectField('Academy', choices=[("Health", "Health"), ("Computer Science", "Computer Science"), ("FADA", "FADA"), ("RPL", "RPL"), ("Engineering", "Engineering")], validators=[DataRequired()] )
     tags = StringField('Tags', validators=[DataRequired()])
     submit = SubmitField('Post')
+
+class MessageForm(FlaskForm):
+    content = TextAreaField('Message', validators=[DataRequired()])
    

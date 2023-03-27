@@ -98,3 +98,16 @@ class College(Document):
     meta = {
         'ordering': ['-createdate']
     }
+
+class Message(Document):
+    content = StringField()
+    recipientid = ReferenceField('User',reverse_delete_rule=CASCADE)
+    senderid = ReferenceField('User',reverse_delete_rule=CASCADE)
+    creator = ReferenceField('User',reverse_delete_rule=CASCADE)
+    create_date = DateTimeField(default=dt.datetime.utcnow)
+
+    meta = {
+        'ordering': ['-createdate']
+    }
+
+

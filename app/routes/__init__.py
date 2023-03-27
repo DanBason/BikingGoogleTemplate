@@ -4,3 +4,4 @@ from .forum import *
 from .user import *
 from .college import *
 from .question import *
+from .message import *
