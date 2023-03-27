@@ -32,7 +32,11 @@ class User(UserMixin, Document):
     image = FileField()
     prononuns = StringField()
     role = StringField()
-    id = ObjectIdField()
+    college_roles = StringField()
+    college = StringField()
+    major = StringField()
+    state = StringField()
+    
 
     meta = {
         'ordering': ['lname','fname']

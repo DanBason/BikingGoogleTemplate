@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Users</h1>
+  <div class="card-deck">
+    {% for user in users %}
+      <div class="card">
+        <img src="{{ user.image.url }}" class="card-img-top" alt="{{ user.fname }} {{ user.lname }}">
+        <div class="card-body">
+          <h5 class="card-title">{{ user.fname }} {{ user.lname }}</h5>
+          <p class="card-text">{{ user.college }} - {{ user.major }}</p>
+          <p class="card-text">{{ user.email }}</p>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}

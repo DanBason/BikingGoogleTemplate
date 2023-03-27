@@ -1,5 +1,6 @@
-from app import app
+from app import app, User
 from flask import render_template
+
 
 # This is for rendering the home page
 @app.route('/aboutus')
@@ -18,6 +19,18 @@ def questionpage():
 def home():
     return render_template('index.html')
 
-@app.route('/college')
-def recipe():
-    return render_template('college_students.html')
+@app.route('/users')
+def users():
+    users = User.query.all()
+    return render_template('users.html', users=users)
+
+
+@app.route('/test')
+def test():
+    users = User.objects.all()
+    for user in users:
+        print(user.fname, user.lname, user.email)
+
+    return render_template("index.html")
+
+
