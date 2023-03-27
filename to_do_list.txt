@@ -30,6 +30,26 @@ Things for everyone else?
     Not sure, maybe CSS?
     Profile Customization
 
+Create a search + filter feature across the entire website and in individual pages (blog, questions, alumni)
+
+
+
+Figure out the process of adding alumni
+Admin (human) verification
+Gmail verification
+School verification (looking at old records?)
+
+Messages
+Connect alumni with students
+Goal is to move off of the site, meet in person or at least communicate more
+
+Create an admin role and creating a sort of “supreme” page
+
+Success pages
+Adding onto the blogs page, create a “featured” blog pages
+
+Parents page
+A page for parents, displays the purpose of the page and how parents and kids could benefit
 
 
 
