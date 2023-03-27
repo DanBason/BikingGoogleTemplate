@@ -17,7 +17,7 @@
       </div>
     </div>
 
-    {% if questions %}
+{% if questions %}
       <div class="row mb-4">
         <div class="col-2">
           <h3 class="h6">Date</h3>
@@ -58,8 +58,8 @@
           {% endif %}
         </div>
       {% endfor %}
-    {% else %}
-      <p>No Questions.</p>
-    {% endif %}
+{% else %}
+      <p>No Questions</p>
+{% endif %}
   </div>
 {% endblock %}

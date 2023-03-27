@@ -74,6 +74,7 @@ class Question(Document):
 class Comment(Document):
     # Line 63 is a way to access all the information in Course and Teacher w/o storing it in this class
     author = ReferenceField('User',reverse_delete_rule=CASCADE) 
+    question = ReferenceField('Question',reverse_delete_rule=CASCADE)
     blog = ReferenceField('Blog',reverse_delete_rule=CASCADE)
     # This could be used to allow comments on comments
     comment = ReferenceField('Comment',reverse_delete_rule=CASCADE)

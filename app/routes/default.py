@@ -1,6 +1,7 @@
 from app import app
 from flask import render_template
-from app.classes.data import User
+from app.classes.data import User, Question
+from app.classes.forms import QuestionForm
 
 
 # This is for rendering the home page
@@ -12,9 +13,7 @@ def AboutUs():
 def index():
     return render_template('index.html')
 
-@app.route('/question')
-def questionpage():
-    return render_template('questions.html')
+
     
 @app.route('/home')
 def home():
@@ -29,9 +28,9 @@ def users():
 @app.route('/test')
 # this was just to figure out a error, it can be deleted
 def test():
-    users = User.objects.all()
-    for user in users:
-        print(user.fname, user.lname, user.email, user._id)
+    questions = Question.objects.all()
+    for question in questions:
+        print(question.author.fname, question.subject)
 
     return render_template("index.html")
 

@@ -42,9 +42,9 @@ def question(questionID):
     # there is a field on the comment collection called 'question' that is a reference the question
     # document it is related to.  You can use the questionID to get the question and then you can use
     # the question object (thisquestion in this case) to get all the comments.
-    thoseComments = Comment.objects(question=thisQuestion)
+    theseComments = Comment.objects(question=thisQuestion)
     # Send the question object and the comments object to the 'question.html' template.
-    return render_template('question.html',question=thisQuestion,comments=thoseComments)
+    return render_template('question.html',question=thisQuestion,comments=theseComments)
 
 # This route will delete a specific question.  You can only delete the question if you are the author.
 # <questionID> is a variable sent to this route by the user who clicked on the trash can in the 
@@ -171,7 +171,7 @@ def questionEdit(questionID):
 @app.route('/comment/new/<questionID>', methods=['GET', 'POST'])
 @login_required
 def question_commentNew(questionID):
-    question = question.objects.get(id=questionID)
+    question = Question.objects.get(id=questionID)
     form = CommentForm()
     if form.validate_on_submit():
         newComment = Comment(
