@@ -1,5 +1,5 @@
 from app import app
-from flask import render_template
+from flask import render_template, Flask
 from app.classes.data import User, Question
 from app.classes.forms import QuestionForm
 
@@ -19,7 +19,7 @@ def index():
 def home():
     return render_template('index.html')
 
-app.route('/parents')
+@app.route('/parents')
 def parents():
     return render_template('parents.html')
 
