@@ -148,8 +148,10 @@ def callback():
             gprofile_pic=gprofile_pic,
             fname = gfname,
             lname = glname
+            
         )
     thisUser.reload()
+
 
     # Begin user session by logging the user in
     login_user(thisUser)

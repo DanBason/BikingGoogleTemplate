@@ -52,3 +52,7 @@ def profileEdit():
     form.role.data = current_user.role
 
     return render_template('profileform.html', form=form)
+
+def college_students():
+    college_students = User.query.filter_by(role='college student').all()
+    return render_template('college_students.html', college_students=college_students)

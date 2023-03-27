@@ -20,4 +20,4 @@ def home():
 
 @app.route('/college')
 def recipe():
-    return render_template('college.html')
+    return render_template('college_students.html')

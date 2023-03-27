@@ -8,12 +8,12 @@ from sys import getprofile
 from tokenize import String
 from typing import KeysView
 from xmlrpc.client import Boolean
-
+import uuid
 from setuptools import SetuptoolsDeprecationWarning
 from app import app
 from flask import flash
 from flask_login import UserMixin
-from mongoengine import FileField, EmailField, StringField, IntField, ReferenceField, DateTimeField, BooleanField, CASCADE
+from mongoengine import FileField, ObjectIdField, EmailField, StringField, IntField, ReferenceField, DateTimeField, BooleanField, CASCADE
 from flask_mongoengine import Document
 import datetime as dt
 import jwt
@@ -32,10 +32,13 @@ class User(UserMixin, Document):
     image = FileField()
     prononuns = StringField()
     role = StringField()
+    id = ObjectIdField()
 
     meta = {
         'ordering': ['lname','fname']
     }
+
+   
     
 class Blog(Document):
     author = ReferenceField('User',reverse_delete_rule=CASCADE) 
