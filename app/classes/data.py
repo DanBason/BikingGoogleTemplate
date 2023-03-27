@@ -36,6 +36,9 @@ class User(UserMixin, Document):
     college = StringField()
     major = StringField()
     state = StringField()
+    userID = IntField()
+    
+
     
 
     meta = {

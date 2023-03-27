@@ -7,10 +7,11 @@ import mongoengine.errors
 from wtforms.validators import URL, Email, DataRequired
 from wtforms.fields.html5 import URLField
 from wtforms import StringField, SubmitField, TextAreaField, IntegerField, SelectField, FileField, BooleanField, SelectMultipleField
-
+from app.classes.data import User
 from flask_wtf import FlaskForm
 from wtforms import StringField, FileField, SelectField
 from wtforms.validators import DataRequired
+from bson import ObjectId
 
 class ProfileForm(FlaskForm):
     fname = StringField('First Name', validators=[DataRequired()])
@@ -21,7 +22,7 @@ class ProfileForm(FlaskForm):
     college = StringField('College')
     major = StringField('Major')
     state = SelectField('State', choices=[("AL", "Alabama"), ("AK", "Alaska"), ("AZ", "Arizona"), ("AR", "Arkansas"), ("CA", "California"), ("CO", "Colorado"), ("CT", "Connecticut"), ("DE", "Delaware"), ("FL", "Florida"), ("GA", "Georgia"), ("HI", "Hawaii"), ("ID", "Idaho"), ("IL", "Illinois"), ("IN", "Indiana"), ("IA", "Iowa"), ("KS", "Kansas"), ("KY", "Kentucky"), ("LA", "Louisiana"), ("ME", "Maine"), ("MD", "Maryland"), ("MA", "Massachusetts"), ("MI", "Michigan"), ("MN", "Minnesota"), ("MS", "Mississippi"), ("MO", "Missouri"), ("MT", "Montana"), ("NE", "Nebraska"), ("NV", "Nevada"), ("NH", "New Hampshire"), ("NJ", "New Jersey"), ("NM", "New Mexico"), ("NY", "New York"), ("NC", "North Carolina"), ("ND", "North Dakota"), ("OH", "Ohio"), ("OK", "Oklahoma"), ("OR", "Oregon"), ("PA", "Pennsylvania"), ("RI", "Rhode Island"), ("SC", "South Carolina"), ("SD", "South Dakota"), ("TN", "Tennessee"), ("TX", "Texas"), ("UT", "Utah"), ("VT", "Vermont"), ("VA", "Virginia"), ("WA", "Washington"), ("WV", "West Virginia"), ("WI", "Wisconsin"), ("WY", "Wyoming")])
-
+    userID = ObjectId()
     submit = SubmitField('Post')
 
     #  def __init__(self, *args, **kwargs):

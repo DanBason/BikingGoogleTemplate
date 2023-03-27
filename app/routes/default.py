@@ -31,7 +31,7 @@ def users():
 def test():
     users = User.objects.all()
     for user in users:
-        print(user.fname, user.lname, user.email, user_id)
+        print(user.fname, user.lname, user.email, user._id)
 
     return render_template("index.html")
 
