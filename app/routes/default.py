@@ -19,10 +19,11 @@ def index():
 def home():
     return render_template('index.html')
 
-@app.route('/users')
-def users():
-    users = User.objects(college_roles="College Student")
-    return render_template('users.html', users=users)
+# the route to all the displayed alumni data
+@app.route('/student_view')
+def college_students():
+    students = User.objects(role='college student')
+    return render_template('student_view.html', students=students)
 
 
 @app.route('/test')
@@ -34,9 +35,6 @@ def test():
 
     return render_template("index.html")
 
-@app.route('/users/<userID>')
-def user_profile(userID):
-    user = User.query.filter_by(id=userID).first()
-    return render_template('user_profile.html', user=user)
+
 
 

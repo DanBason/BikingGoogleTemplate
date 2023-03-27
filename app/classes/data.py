@@ -33,9 +33,6 @@ class User(UserMixin, Document):
     prononuns = StringField()
     role = StringField()
     college_roles = StringField()
-    college = StringField()
-    major = StringField()
-    state = StringField()
     userID = IntField()
     
 
@@ -90,15 +87,14 @@ class Comment(Document):
 class College(Document):
     name = StringField()
     state = StringField()
-    owner = ReferenceField('User', reverse_delete_rule=CASCADE)
     image = FileField()
-    summary = StringField()
     major = StringField()
     tech_grad_year = IntField()
+    tech_academy = StringField
     tags = StringField()
     create_date = DateTimeField(default=dt.datetime.utcnow)
     modify_date = DateTimeField()
-
+    user = ReferenceField('User', reverse_delete_rule=CASCADE)
     meta = {
         'ordering': ['-createdate']
     }

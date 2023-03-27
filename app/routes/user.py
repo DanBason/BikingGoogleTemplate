@@ -1,8 +1,8 @@
 from app import app
 from flask_login.utils import login_required
-from flask import render_template, redirect, flash, url_for
-from app.classes.data import User
-from app.classes.forms import ProfileForm
+from flask import render_template, redirect, flash, url_for, request
+from app.classes.data import User, College
+from app.classes.forms import ProfileForm, CollegeForm
 from flask_login import current_user
 
 # These routes and functions are for accessing and editing user profiles.
@@ -52,7 +52,11 @@ def profileEdit():
     form.role.data = current_user.role
 
     return render_template('profileform.html', form=form)
+# this is the route to the alumni profile page
+@app.route('/colleges/<user_id>')
+def user_colleges(user_id):
+    user = User.objects.get(id=user_id)
+    colleges = College.objects(user=user)
+    college_students = User.objects.filter(role='college student')
+    return render_template('user_profile.html', user=user, colleges=colleges, college_students=college_students)
 
-def college_students():
-    college_students = User.query.filter_by(role='college student').all()
-    return render_template('college_students.html', college_students=college_students)
