@@ -16,11 +16,16 @@
         {% endif %} 
     </div>
     <div class="col display-5">
+        
+        
+        
         {% if current_user.fname and current_user.lname %}
             Name: {{current_user.fname}}  {{current_user.lname}} <br>
         {% else %}
             Google User Name: {{current_user.gname}} <br>
         {% endif %}
+        College: {{current_user.college_name}} <br>
+        State: {{current_user.state}} <br>
         Role: {{current_user.role}} <br>
         Email: {{current_user.email}} <br>
 
@@ -28,12 +33,13 @@
             Test
             <h2>College Information:</h2>
             <br>
-            College: {{current_user.name}} <br>
+            College: {{current_user.college_name}} <br>
             State: {{current_user.state}} <br>
             Major: {{current_user.major}} <br>
             Tech Graduation Year: {{current_user.tech_grad_year}} <br>
-            Former Academy: {{current_user.academy}} <br>
+            Former Academy: {{current_user.tech_academy}} <br>
 
+        
             
 
         {% endif %}
