@@ -32,7 +32,7 @@ class User(UserMixin, Document):
     image = FileField()
     prononuns = StringField()
     role = StringField()
-    college_roles = StringField()
+    college = ReferenceField('College')
     userID = IntField()
     
 
@@ -95,6 +95,7 @@ class College(Document):
     create_date = DateTimeField(default=dt.datetime.utcnow)
     modify_date = DateTimeField()
     user = ReferenceField('User', reverse_delete_rule=CASCADE)
+    userID = ReferenceField('User', reverse_delete_rule=CASCADE)
     meta = {
         'ordering': ['-createdate']
     }

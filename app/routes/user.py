@@ -26,6 +26,7 @@ def profileEdit():
     # This gets an object that is an instance of the form class from the forms.pyin classes
     form = ProfileForm()
     print("the profile edit works")
+    print(current_user.role)
     # This asks if the form was valid when it was submitted
     if form.validate_on_submit():
         # if the form was valid then this gets an object that represents the currUser's data
@@ -45,7 +46,7 @@ def profileEdit():
             # This saves all the updates
             currUser.save()
         # Then sends the user to their profle page
-        return redirect(url_for('myProfile'))
+        return render_template("index.html")
 
     # If the form was not submitted this prepopulates a few fields
     # then sends the user to the page with the edit profile form
@@ -54,6 +55,67 @@ def profileEdit():
     form.role.data = current_user.role
 
     return render_template('profileform.html', form=form)
+
+# similar to profile, but for college data
+@app.route('/mycollege')
+# This line tells the user that they cannot access this without being loggedin
+@login_required
+# This is the function that is run when the route is triggered\
+def myCollege():
+    form = CollegeForm()
+    if form.validate_on_submit():
+        # handle form submission here
+        pass
+    return render_template('collegeform.html', form=form)
+
+@app.route('/mycollege/edit', methods=['GET','POST'])
+# This requires the user to be loggedin
+@login_required
+# This is the function that goes with the route
+def collegeEdit():
+    # This gets an object that is an instance of the form class from the forms.pyin classes
+    form = CollegeForm()
+    if form.validate_on_submit():
+        # handle form submission here
+        pass
+    print("the college edit works")
+    # This asks if the form was valid when it was submitted
+    if form.validate_on_submit():
+        # if the form was valid then this gets an object that represents the current college data
+        currUser = College.objects.get(id=current_user.college.id)
+        print("the college form saves")
+        # This updates the data on the college record that was collected from the form
+        currCollege.update(
+            name = form.name.data,
+            state = form.state.data,
+            major = form.major.data,
+            tech_grad_year = form.tech_grad_year.data,
+            tech_academy = form.tech_academy.data,
+            tags = form.tags.data,
+        )
+        # This updates the profile image
+        if form.image.data:
+            if currCollege.image:
+                currCollege.image.delete()
+            currCollege.image.put(form.image.data, content_type = 'image/jpeg')
+            # This saves all the updates
+            currCollege.save()
+        # Then sends the user to their profile page
+        return redirect(url_for('myCollege'))
+
+    # If the form was not submitted this prepopulates a few fields
+    # then sends the user to the page with the edit college form
+    currCollege = College.objects(user=current_user).first()
+    if currCollege:
+        form.name.data = currCollege.name
+        form.state.data = currCollege.state
+        form.major.data = currCollege.major
+        form.tech_grad_year.data = currCollege.tech_grad_year
+        form.tech_academy.data = currCollege.tech_academy
+        form.tags.data = currCollege.tags
+
+    return render_template('collegeform.html', form=form)
+
 # this is the route to the alumni profile page
 @app.route('/colleges/<user_id>')
 def user_colleges(user_id):

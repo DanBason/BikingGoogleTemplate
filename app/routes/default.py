@@ -13,13 +13,7 @@ def AboutUs():
 def index():
     return render_template('index.html')
 
-@app.route('/collegeform', methods=['GET', 'POST'])
-def college_form():
-    form = CollegeForm()
-    if form.validate_on_submit():
-        # handle form submission here
-        pass
-    return render_template('profileform.html', form=form)
+
 
 
 

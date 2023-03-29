@@ -24,11 +24,21 @@
         Role: {{current_user.role}} <br>
         Email: {{current_user.email}} <br>
 
+        {% if current_user.role == 'college_student' %}
+            Test
+            <h2>College Information:</h2>
+            <br>
+            College: {{current_user.name}} <br>
+            State: {{current_user.state}} <br>
+            Major: {{current_user.major}} <br>
+            Tech Graduation Year: {{current_user.tech_grad_year}} <br>
+            Former Academy: {{current_user.academy}} <br>
+
+            
+
+        {% endif %}
     </div>
 </div>
-<br>
- 
-
 
 
 {% endblock %}
