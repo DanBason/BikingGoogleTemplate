@@ -5,18 +5,35 @@
 <div class="container mt-3">
 	<h1>Search Results for "{{ searched }}"</h1>
 	<hr>
-	{% if blogs %}
-		{% for blog in blogs %}
-			<div class="card mb-3">
-				<div class="card-body">
-					<h5 class="card-title">{{ blog.subject }}</h5>
-					<a href="/blog/{{ blog.id }}" class="card-text">{{ blog.content }}</a>
+	{% if blogs or questions %}
+		{% if blogs %}
+			<h2>Blogs</h2>
+			{% for blog in blogs %}
+				<div class="card mb-3">
+					<div class="card-body">
+						<h5 class="card-title">{{ blog.subject }}</h5>
+						<a href="/blog/{{ blog.id }}" class="card-text">{{ blog.content }}</a>
+					</div>
+					<div class="card-footer">
+						<small class="text-muted">Posted on {{ blog.create_date }}</small>
+					</div>
 				</div>
-				<div class="card-footer">
-					<small class="text-muted">Posted on {{ blog.create_date }}</small>
+			{% endfor %}
+		{% endif %}
+		{% if questions %}
+			<h2>Questions</h2>
+			{% for question in questions %}
+				<div class="card mb-3">
+					<div class="card-body">
+						<h5 class="card-title">{{ question.subject }}</h5>
+						<a href="/question/{{ question.id }}" class="card-text">{{ question.content}}</a>
+					</div>
+					<div class="card-footer">
+						<small class="text-muted">Asked on {{ question.create_date }}</small>
+					</div>
 				</div>
-			</div>
-		{% endfor %}
+			{% endfor %}
+		{% endif %}
 	{% else %}
 		<p>No results found.</p>
 	{% endif %}

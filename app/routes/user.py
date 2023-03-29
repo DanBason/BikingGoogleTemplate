@@ -1,8 +1,8 @@
 from app import app
 from flask_login.utils import login_required
 from flask import render_template, redirect, flash, url_for, request
-from app.classes.data import User, College, Blog
-from app.classes.forms import ProfileForm, CollegeForm, SearchForm, BlogForm
+from app.classes.data import User, College, Blog, Question
+from app.classes.forms import ProfileForm, CollegeForm, SearchForm, BlogForm, QuestionForm
 from flask_login import current_user
 
 # These routes and functions are for accessing and editing user profiles.
@@ -69,14 +69,18 @@ def base():
 def search():
     form = SearchForm()
     blogs = Blog.objects()
+    questions = Question.objects()
     if form.validate_on_submit():
         # Get data from submitted form
         searched = form.searched.data
-        # Query the Database
+        # Query the Database for blogs
         blogs = blogs.filter(content__icontains=searched)
         blogs = blogs.order_by('content')
-        print("this worked")  # corrected indentation
-        return render_template("search.html", form=form, searched=searched,blogs=blogs)
+        # Query the Database for questions
+        questions = questions.filter(content__icontains=searched)
+        questions = questions.order_by('content')
+        print("this worked")
+        return render_template("search.html", form=form, searched=searched, blogs=blogs, questions=questions)
     
 
 
