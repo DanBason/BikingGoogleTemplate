@@ -31,8 +31,17 @@ class User(UserMixin, Document):
     email = EmailField()
     image = FileField()
     prononuns = StringField()
-    role = StringField()
-    college = ReferenceField('College')
+    role = ReferenceField('College',reverse_delete_rule=CASCADE)
+    name = ReferenceField('College',reverse_delete_rule=CASCADE)
+    state = ReferenceField('College',reverse_delete_rule=CASCADE)
+    image = ReferenceField('College',reverse_delete_rule=CASCADE)
+    major = ReferenceField('College',reverse_delete_rule=CASCADE)
+    image = ReferenceField('College',reverse_delete_rule=CASCADE)
+    tech_grad_year = ReferenceField('College',reverse_delete_rule=CASCADE)
+    tech_academy = ReferenceField('College',reverse_delete_rule=CASCADE)
+    tags = ReferenceField('College',reverse_delete_rule=CASCADE)
+
+
     userID = IntField()
     
 
