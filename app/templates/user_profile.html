@@ -13,19 +13,19 @@
           <li><strong>Profile Picture:</strong> <img src="{{ user.image.url }}" alt="Profile Picture" class="img-fluid"></li>
           <li><strong>Pronouns:</strong> {{ user.pronouns }}</li>
           <li><strong>Role:</strong> {{ user.role }}</li>
-          <li><strong>College Roles:</strong> {{ user.college_roles }}</li>
+          
         </ul>
       </div>
       <div class="col-md-6">
         <h1>College Data</h1>
         <ul class="list-unstyled">
-          <li><strong>Name:</strong> {{ college.name }}</li>
+          <li><strong>College:</strong> {{ college.college_name }}</li>
           <li><strong>State:</strong> {{ college.state }}</li>
-          <li><strong>Image:</strong> <img src="{{ college.image.url }}" alt="College Image" class="img-fluid"></li>
+          <li><strong>Image:</strong> <img src="{{ college.college_image.url }}" alt="College Image" class="img-fluid"></li>
           <li><strong>Major:</strong> {{ college.major }}</li>
           <li><strong>Tech Grad Year:</strong> {{ college.tech_grad_year }}</li>
           <li><strong>Tech Academy:</strong> {{ college.tech_academy }}</li>
-          <li><strong>Tags:</strong> {{ college.tags }}</li>
+          <li><strong>Tags:</strong> {{ college.college_tags }}</li>
         </ul>
       </div>
     </div>

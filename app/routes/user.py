@@ -69,50 +69,49 @@ def myCollege():
     return render_template('collegeform.html', form=form)
 
 @app.route('/mycollege/edit', methods=['GET','POST'])
-# This requires the user to be loggedin
 @login_required
-# This is the function that goes with the route
 def collegeEdit():
-    # This gets an object that is an instance of the form class from the forms.pyin classes
     form = CollegeForm()
-    if form.validate_on_submit():
-        # handle form submission here
-        pass
-    print("the college edit works")
-    # This asks if the form was valid when it was submitted
-    if form.validate_on_submit():
-        # if the form was valid then this gets an object that represents the current college data
-        currUser = College.objects.get(id=current_user.college.id)
-        print("the college form saves")
-        # This updates the data on the college record that was collected from the form
-        currCollege.update(
-            name = form.name.data,
-            state = form.state.data,
-            major = form.major.data,
-            tech_grad_year = form.tech_grad_year.data,
-            tech_academy = form.tech_academy.data,
-            tags = form.tags.data,
-        )
-        # This updates the profile image
-        if form.image.data:
-            if currCollege.image:
-                currCollege.image.delete()
-            currCollege.image.put(form.image.data, content_type = 'image/jpeg')
-            # This saves all the updates
-            currCollege.save()
-        # Then sends the user to their profile page
-        return redirect(url_for('myCollege'))
+    currUser = College.objects(user=current_user).first()
+    if currUser:
+        # pre-populate the form with the current user's college data
+        form.college_name.data = currUser.college_name
+        form.state.data = currUser.state
+        form.major.data = currUser.major
+        form.tech_grad_year.data = currUser.tech_grad_year
+        form.tech_academy.data = currUser.tech_academy
+        form.college_tags.data = currUser.college_tags
 
-    # If the form was not submitted this prepopulates a few fields
-    # then sends the user to the page with the edit college form
-    currCollege = College.objects(user=current_user).first()
-    if currCollege:
-        form.name.data = currCollege.name
-        form.state.data = currCollege.state
-        form.major.data = currCollege.major
-        form.tech_grad_year.data = currCollege.tech_grad_year
-        form.tech_academy.data = currCollege.tech_academy
-        form.tags.data = currCollege.tags
+    if form.validate_on_submit():
+        print("college form validated")
+        if currUser:
+            # update the existing college record
+            currUser.update(
+                college_name=form.college_name.data,
+                state=form.state.data,
+                major=form.major.data,
+                tech_grad_year=form.tech_grad_year.data,
+                tech_academy=form.tech_academy.data,
+                college_tags=form.college_tags.data
+            )
+        else:
+            # create a new college record for the current user
+            print("college form didn't validate")
+            currUser = College(
+                user=current_user,
+                college_name=form.college_name.data,
+                state=form.state.data,
+                major=form.major.data,
+                tech_grad_year=form.tech_grad_year.data,
+                tech_academy=form.tech_academy.data,
+                college_tags=form.college_tags.data
+            )
+        if form.college_image.data:
+            if currUser.college_image:
+                currUser.college_image.delete()
+            currUser.college_image.put(form.college_image.data, content_type='image/jpeg')
+        currUser.save()
+        return redirect(url_for('myProfile'))
 
     return render_template('collegeform.html', form=form)
 

@@ -85,13 +85,14 @@ class Comment(Document):
     }
 
 class College(Document):
-    name = StringField()
+    college_name = StringField()
     state = StringField()
-    image = FileField()
+    college_image = FileField()
     major = StringField()
+    college_image = FileField()
     tech_grad_year = IntField()
-    tech_academy = StringField
-    tags = StringField()
+    tech_academy = StringField()
+    college_tags = StringField()
     create_date = DateTimeField(default=dt.datetime.utcnow)
     modify_date = DateTimeField()
     user = ReferenceField('User', reverse_delete_rule=CASCADE)
@@ -99,6 +100,7 @@ class College(Document):
     meta = {
         'ordering': ['-createdate']
     }
+
 
 class Message(Document):
     content = StringField()
