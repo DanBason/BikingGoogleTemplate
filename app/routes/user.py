@@ -1,8 +1,8 @@
 from app import app
 from flask_login.utils import login_required
 from flask import render_template, redirect, flash, url_for, request
-from app.classes.data import User, College
-from app.classes.forms import ProfileForm, CollegeForm
+from app.classes.data import User, College, Blog
+from app.classes.forms import ProfileForm, CollegeForm, SearchForm, BlogForm
 from flask_login import current_user
 
 # These routes and functions are for accessing and editing user profiles.
@@ -59,4 +59,23 @@ def user_colleges(user_id):
     colleges = College.objects(user=user)
     college_students = User.objects.filter(role='college student')
     return render_template('user_profile.html', user=user, colleges=colleges, college_students=college_students)
+
+@app.context_processor
+def base():
+     form = SearchForm()
+     return dict(form=form)
+
+@app.route('/search', methods=["POST"])
+def search():
+	form = SearchForm()
+	blogs = Blog.objects()
+	if form.validate_on_submit():
+		# Get data from submitted form
+		searched = form.searched.data
+		# Query the Database
+		blogs = blogs.filter(content__icontains=searched)
+		blogs = blogs.order_by('content')
+
+		return render_template("search.html",form=form,searched=searched,blogs=blogs)
+
 

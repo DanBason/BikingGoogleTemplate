@@ -27,7 +27,9 @@ class ProfileForm(FlaskForm):
 # need to figure this out
 
 
-   
+class SearchForm(FlaskForm):
+	searched = StringField("Searched", validators=[DataRequired()])
+	submit = SubmitField("Submit")  
 
 class BlogForm(FlaskForm):
     subject = StringField('Subject', validators=[DataRequired()])

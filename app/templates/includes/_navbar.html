@@ -1,12 +1,8 @@
-
-
 <head>
   <meta charset="UTF-8">
   <title>My Website</title>
   <link rel="stylesheet" href="navbar.css"> <!-- add this line to link to your stylesheet -->
 </head>
-
-
 
 <nav class="navbar navbar-expand-lg navbar-light bg-white">
 
@@ -29,9 +25,12 @@
         <li class="nav-item">
           <a class="nav-link" href="/student_view">Alumni </a>
         </li>
-        <li>
-      </li> 
       </ul>
+      <form method="POST" action = {{url_for('search')}} class="d-flex">
+        {{form.hidden_tag()}}
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search", name = "searched">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
         {% if current_user.is_anonymous %}
           <li class="nav-item">
@@ -53,7 +52,4 @@
       </ul>
     </div>
   </div>
-</nav>  
-
-<!--<li class="nav-item">
-          <a class="nav-link" href="/test">Test </a>-->
+</nav>
