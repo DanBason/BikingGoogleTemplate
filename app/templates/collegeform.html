@@ -1,69 +1,60 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 
 {% block body %}
-        <h1></h1>
-
-        <form method=post>
-            {{ form.hidden_tag() }}
-            <p>
-                {{ form.name.label }} <br>
-                {{ form.name(size=64) }}
-                <!--List the errors for this field-->
-                {% for error in form.name.errors %}
-                    <span style="color: red;">[{{ error }}]</span>
-                {% endfor %}
-            </p>
-            <p>
-                {{ form.name.label }} <br>
-                {{ form.name(size=64) }}
-                <!--List the errors for this field-->
-                {% for error in form.name.errors %}
-                    <span style="color: red;">[{{ error }}]</span>
-                {% endfor %}
-            </p>
-            <p>
-                {{ form.owner.label }} <br>
-                {{ form.owner(size=64) }}
-                <!--List the errors for this field-->
-                {% for error in form.owner.errors %}
-                    <span style="color: red;">[{{ error }}]</span>
-                {% endfor %}
-            </p>
-            <p>
-                {{ form.tech_grad_year.label }} <br>
-                {{ form.tech_grad_year(size=64) }}
-                <!--List the errors for this field-->--------IMAGE HERE
-                {% for error in form.tech_grad_year.errors %}
-                    <span style="color: red;">[{{ error }}]</span>
-                {% endfor %}
-            </p>
-            <p>
-                {{ form.summary.label }} <br>
-                {{ form.summary(size=64) }}
-                <!--List the errors for this field-->
-                {% for error in form.summary.errors %}
-                    <span style="color: red;">[{{ error }}]</span>
-                {% endfor %}
-            </p>
-            <p>
-                {{ form.major.label }} <br>
-                {{ form.major(size=64) }}
-                <!--List the errors for this field-->
-                {% for error in form.major.errors %}
-                    <span style="color: red;">[{{ error }}]</span>
-                {% endfor %}
-            </p>
-            <p>
-                {{ form.tags.label }} <br>
-                {{ form.tags(size=64) }}
-                <!--List the errors for this field-->
-                {% for error in form.tags.errors %}
-                    <span style="color: red;">[{{ error }}]</span>
-                {% endfor %}
-            </p>
-            <p>
-                {{form.submit()}}
-            </p>
-        </form>
-        
+<div class="container">
+  <h1>College Information Form</h1>
+  <form method="POST" enctype="multipart/form-data">
+    {{ form.hidden_tag() }}
+    <div class="form-group">
+      {{ form.name.label() }}
+      {{ form.name(class="form-control") }}
+      {% for error in form.name.errors %}
+      <span class="text-danger">{{ error }}</span>
+      {% endfor %}
+    </div><br>
+    <div class="form-group">
+      {{ form.state.label() }}
+      {{ form.state(class="form-control") }}
+      {% for error in form.state.errors %}
+      <span class="text-danger">{{ error }}</span>
+      {% endfor %}
+    </div><br>
+    <div class="form-group">
+      {{ form.image.label() }}
+      {{ form.image(class="form-control-file") }}
+      {% for error in form.image.errors %}
+      <span class="text-danger">{{ error }}</span>
+      {% endfor %}
+    </div><br>
+    <div class="form-group">
+      {{ form.major.label() }}
+      {{ form.major(class="form-control") }}
+      {% for error in form.major.errors %}
+      <span class="text-danger">{{ error }}</span>
+      {% endfor %}
+    </div><br>
+    <div class="form-group">
+      {{ form.tech_grad_year.label() }}
+      {{ form.tech_grad_year(class="form-control") }}
+      {% for error in form.tech_grad_year.errors %}
+      <span class="text-danger">{{ error }}</span>
+      {% endfor %}
+    </div><br>
+    <div class="form-group">
+      {{ form.tech_academy.label() }}
+      {{ form.tech_academy(class="form-control") }}
+      {% for error in form.tech_academy.errors %}
+      <span class="text-danger">{{ error }}</span>
+      {% endfor %}
+    </div><br>
+    <div class="form-group">
+      {{ form.tags.label() }}
+      {{ form.tags(class="form-control") }}
+      {% for error in form.tags.errors %}
+      <span class="text-danger">{{ error }}</span>
+      {% endfor %}
+    </div><br>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
 {% endblock %}

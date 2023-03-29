@@ -1,7 +1,7 @@
 from app import app
-from flask import render_template, Flask
-from app.classes.data import User, Question
-from app.classes.forms import QuestionForm
+from flask import render_template, Flask, redirect, url_for
+from app.classes.data import User, Question, College
+from app.classes.forms import QuestionForm, CollegeForm
 
 
 # This is for rendering the home page
@@ -12,6 +12,15 @@ def AboutUs():
 @app.route('/')
 def index():
     return render_template('index.html')
+
+@app.route('/collegeform', methods=['GET', 'POST'])
+def college_form():
+    form = CollegeForm()
+    if form.validate_on_submit():
+        # handle form submission here
+        pass
+    return render_template('profileform.html', form=form)
+
 
 
     
@@ -38,6 +47,8 @@ def test():
         print(question.author.fname, question.subject)
 
     return render_template("index.html")
+
+
 
 
 

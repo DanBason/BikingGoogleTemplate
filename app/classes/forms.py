@@ -18,13 +18,13 @@ class ProfileForm(FlaskForm):
     lname = StringField('Last Name', validators=[DataRequired()]) 
     image = FileField("Image")
     role = SelectField('Role', choices=[("Teacher", "Teacher"), ("College Student", "College Student"), ("Parent", "Parent"), ("K-12 Student", "K-12 Student")], validators=[DataRequired()])
-    college_roles = SelectField('College Roles', choices=[("Freshman", "Freshman"), ("Sophomore", "Sophomore"), ("Junior", "Junior"), ("Senior", "Senior")], validators=[DataRequired()])
+    
     userID = ObjectId()
     submit = SubmitField('Post')
 
     
 
-# need to figure this out
+# need to figure this 
 
 
 class SearchForm(FlaskForm):

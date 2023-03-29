@@ -1,53 +1,37 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 
 {% block body %}
-
     <h1>Register</h1>
-    <!--enctype is needed to upload files -->
-    <form action="" method="post" enctype="multipart/form-data">
-        {{ form.hidden_tag() }}
-        <p>
-            {{ form.fname.label }}<br>
-            {{ form.fname(size=64) }}<br>
+        <form action="" method="post" enctype="multipart/form-data">
+            {{ form.hidden_tag() }}
+            <label>{{ form.fname.label }} {{ form.fname(size=64) }}</label><br>
             {% for error in form.fname.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        </p>
-        <p>
-            {{ form.lname.label }}<br>
-            {{ form.lname() }}<br>
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}<br><br>
+            <label>{{ form.lname.label }} {{ form.lname() }}</label><br>
             {% for error in form.lname.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        </p>
-        <p>
-            {{ form.role.label }}<br>
-            {{ form.role() }}<br>
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}<br><br>
+            <label>{{ form.role.label }} {{ form.role() }}</label><br>
             {% for error in form.role.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        </p>
-        <p>
-            {{ form.image.label }}<br>
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}<br><br>
+            <label>{{ form.image.label }} {{ form.image() }}</label><br>
             {% if current_user.image %}
-                <img class="img-thumbnail" width="100" src="data:image;base64,{{base64encode(current_user.image.read())}}"> <br>
+                <img class="img-thumbnail" width="100" src="data:image;base64,{{base64encode(current_user.image.read())}}"><br>
             {% else %}
-                <img class="img-thumbnail" width = "100" src="/static/bdog.png">
-            {% endif %} <br>
-            {{ form.image() }}<br>
+                <img class="img-thumbnail" width="100" src="/static/bdog.png"><br>
+            {% endif %}<br>
             {% for error in form.image.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        </p>
-
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}<br><br>
+            <a href="/collegeform" class="btn btn-primary">College Form</a><br><br>
+            {{ form.submit() }}
+        </form>
         
         
         
         
         
-
         
-        <p>{{ form.submit() }}</p>
-    </form>
-
 {% endblock %}

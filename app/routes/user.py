@@ -25,10 +25,12 @@ def myProfile():
 def profileEdit():
     # This gets an object that is an instance of the form class from the forms.pyin classes
     form = ProfileForm()
+    print("the profile edit works")
     # This asks if the form was valid when it was submitted
     if form.validate_on_submit():
         # if the form was valid then this gets an object that represents the currUser's data
         currUser = User.objects.get(id=current_user.id)
+        print("the profile form saves")
         # This updates the data on the user record that was collected from the form
         currUser.update(
             lname = form.lname.data,
