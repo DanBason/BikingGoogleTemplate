@@ -24,8 +24,8 @@
         {% else %}
             Google User Name: {{current_user.gname}} <br>
         {% endif %}
-        College: {{current_user.college_name}} <br>
-        State: {{current_user.state}} <br>
+        College: {{current_user.college.name}} <br>
+        State: {{current_user.college.state}} <br>
         Role: {{current_user.role}} <br>
         Email: {{current_user.email}} <br>
 
@@ -33,11 +33,11 @@
             Test
             <h2>College Information:</h2>
             <br>
-            College: {{current_user.college_name}} <br>
-            State: {{current_user.state}} <br>
-            Major: {{current_user.major}} <br>
-            Tech Graduation Year: {{current_user.tech_grad_year}} <br>
-            Former Academy: {{current_user.tech_academy}} <br>
+            College: {{current_user.college.name}} <br>
+            State: {{current_user.college.state}} <br>
+            Major: {{current_user.college.major}} <br>
+            Tech Graduation Year: {{current_user.college.tech_grad_year}} <br>
+            Former Academy: {{current_user.college.tech_academy}} <br>
 
         
             

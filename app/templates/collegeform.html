@@ -6,9 +6,9 @@
   <form method="POST" enctype="multipart/form-data">
     {{ form.hidden_tag() }}
     <div class="form-group">
-      {{ form.college_name.label() }}
-      {{ form.college_name(class="form-control") }}
-      {% for error in form.college_name.errors %}
+      {{ form.name.label() }}
+      {{ form.name(class="form-control") }}
+      {% for error in form.name.errors %}
       <span class="text-danger">{{ error }}</span>
       {% endfor %}
     </div><br>
@@ -20,9 +20,9 @@
       {% endfor %}
     </div><br>
     <div class="form-group">
-      {{ form.college_image.label() }}
-      {{ form.college_image(class="form-control-file") }}
-      {% for error in form.college_image.errors %}
+      {{ form.image.label() }}
+      {{ form.image(class="form-control-file") }}
+      {% for error in form.image.errors %}
       <span class="text-danger">{{ error }}</span>
       {% endfor %}
     </div><br>
@@ -48,9 +48,9 @@
       {% endfor %}
     </div><br>
     <div class="form-group">
-      {{ form.college_tags.label() }}
-      {{ form.college_tags(class="form-control") }}
-      {% for error in form.college_tags.errors %}
+      {{ form.tags.label() }}
+      {{ form.tags(class="form-control") }}
+      {% for error in form.tags.errors %}
       <span class="text-danger">{{ error }}</span>
       {% endfor %}
     </div><br>

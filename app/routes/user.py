@@ -46,7 +46,12 @@ def profileEdit():
             # This saves all the updates
             currUser.save()
         # Then sends the user to their profle page
-        return render_template("index.html")
+        if current_user.fname:
+            print(current_user.college.name)
+        else:
+         print("No college associated with current user.")
+
+        return redirect(url_for('myProfile'))
 
     # If the form was not submitted this prepopulates a few fields
     # then sends the user to the page with the edit profile form
@@ -75,42 +80,43 @@ def collegeEdit():
     currUser = College.objects(user=current_user).first()
     if currUser:
         # pre-populate the form with the current user's college data
-        form.college_name.data = currUser.college_name
+        form.name.data = currUser.name
         form.state.data = currUser.state
         form.major.data = currUser.major
         form.tech_grad_year.data = currUser.tech_grad_year
         form.tech_academy.data = currUser.tech_academy
-        form.college_tags.data = currUser.college_tags
+        form.tags.data = currUser.tags
 
     if form.validate_on_submit():
         print("college form validated")
         if currUser:
             # update the existing college record
             currUser.update(
-                college_name=form.college_name.data,
+                name=form.name.data,
                 state=form.state.data,
                 major=form.major.data,
                 tech_grad_year=form.tech_grad_year.data,
                 tech_academy=form.tech_academy.data,
-                college_tags=form.college_tags.data
+                tags=form.tags.data
             )
         else:
             # create a new college record for the current user
             print("college form didn't validate")
             currUser = College(
                 user=current_user,
-                college_name=form.college_name.data,
+                name=form.name.data,
                 state=form.state.data,
                 major=form.major.data,
                 tech_grad_year=form.tech_grad_year.data,
                 tech_academy=form.tech_academy.data,
-                college_tags=form.college_tags.data
+                tags=form.tags.data
             )
-        if form.college_image.data:
-            if currUser.college_image:
-                currUser.college_image.delete()
-            currUser.college_image.put(form.college_image.data, content_type='image/jpeg')
+        if form.image.data:
+            if currUser.image:
+                currUser.image.delete()
+            currUser.image.put(form.image.data, content_type='image/jpeg')
         currUser.save()
+        print(current_user.college.name)
         return redirect(url_for('myProfile'))
 
     return render_template('collegeform.html', form=form)

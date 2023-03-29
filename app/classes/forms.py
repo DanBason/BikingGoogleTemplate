@@ -49,13 +49,13 @@ class CommentForm(FlaskForm):
 
 class CollegeForm(FlaskForm):
     
-    college_name = StringField('College Name', validators=[DataRequired()])
+    name = StringField('College Name', validators=[DataRequired()])
     state = StringField('College State',validators=[DataRequired()])
-    college_image = FileField()
+    image = FileField()
     major = StringField('Major', validators=[DataRequired()])
     tech_grad_year = IntegerField('Tech Graduation Year', validators=[DataRequired()])
     tech_academy = SelectField('Academy', choices=[("Health", "Health"), ("Computer Science", "Computer Science"), ("FADA", "FADA"), ("RPL", "RPL"), ("Engineering", "Engineering")], validators=[DataRequired()] )
-    college_tags = StringField('Tags', validators=[DataRequired()])
+    tags = StringField('Tags', validators=[DataRequired()])
     
     submit = SubmitField('Post')
 
