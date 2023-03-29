@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block content %}
+{% block body %}
 
 <div class="container mt-3">
 	<h1>Search Results for "{{ searched }}"</h1>
@@ -10,7 +10,7 @@
 			<div class="card mb-3">
 				<div class="card-body">
 					<h5 class="card-title">{{ blog.subject }}</h5>
-					<p class="card-text">{{ blog.content }}</p>
+					<a href="/blog/{{ blog.id }}" class="card-text">{{ blog.content }}</a>
 				</div>
 				<div class="card-footer">
 					<small class="text-muted">Posted on {{ blog.create_date }}</small>
@@ -22,4 +22,4 @@
 	{% endif %}
 </div>
 
-{% endblock content %}
+{% endblock %}

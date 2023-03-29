@@ -67,15 +67,17 @@ def base():
 
 @app.route('/search', methods=["POST"])
 def search():
-	form = SearchForm()
-	blogs = Blog.objects()
-	if form.validate_on_submit():
-		# Get data from submitted form
-		searched = form.searched.data
-		# Query the Database
-		blogs = blogs.filter(content__icontains=searched)
-		blogs = blogs.order_by('content')
+    form = SearchForm()
+    blogs = Blog.objects()
+    if form.validate_on_submit():
+        # Get data from submitted form
+        searched = form.searched.data
+        # Query the Database
+        blogs = blogs.filter(content__icontains=searched)
+        blogs = blogs.order_by('content')
+        print("this worked")  # corrected indentation
+        return render_template("search.html", form=form, searched=searched,blogs=blogs)
+    
 
-		return render_template("search.html",form=form,searched=searched,blogs=blogs)
 
 
