@@ -147,7 +147,7 @@ def collegeEdit():
 def user_colleges(user_id):
     user = User.objects.get(id=user_id)
     colleges = College.objects(user=user)
-    college_students = User.objects.filter(role='college student')
+    college_students = User.objects.filter(role='College Student')
     return render_template('user_profile.html', user=user, colleges=colleges, college_students=college_students)
 
 @app.context_processor
