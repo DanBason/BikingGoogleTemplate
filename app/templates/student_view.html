@@ -10,7 +10,8 @@
           <th>Name</th>
           <th>Email</th>
           <th>College Name</th>
-          <th>Graduation Year</th>
+          <th>Tech Graduation Year</th>
+          <th>Location</th>
         </tr>
       </thead>
       <tbody>
@@ -19,8 +20,22 @@
             <td>{{ student.username }}</td>
             <td>{{ student.fname }} {{ student.lname }}</td>
             <td>{{ student.email }}</td>
-            <td>{{ student.college.name }}</td>
-            <td>{{ student.college.tech_grad_year }}</td>
+            {% for college in student.colleges %}
+              {% if loop.first %}
+                <td>{{ college.name }}</td>
+                <td>{{ college.tech_grad_year }}</td>
+                <td>{{ college.state }}</td>
+              {% else %}
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>{{ college.name }}</td>
+                  <td>{{ college.tech_grad_year }}</td>
+                  <td>{{ college.state }}</td>
+                </tr>
+              {% endif %}
+            {% endfor %}
           </tr>
         {% endfor %}
       </tbody>
