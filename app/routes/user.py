@@ -57,7 +57,7 @@ def profileEdit():
          print("No college associated with current user.")
 
 
-        return redirect(url_for('myProfile'),currUser=currUser)
+        return redirect(url_for('myProfile'))
 
     # If the form was not submitted this prepopulates a few fields
     # then sends the user to the page with the edit profile form
