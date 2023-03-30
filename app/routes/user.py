@@ -14,7 +14,12 @@ from flask_login import current_user
 # This is the function that is run when the route is triggered
 def myProfile():
     # This sends the user to their profile page which renders the 'profilemy.html' template
-    return render_template('profilemy.html')
+    
+    # Query the College collection for the current user's college
+    college = College.objects(user=current_user).first()
+
+    return render_template('profilemy.html', college=college)
+   
 
 # This is the route for editing a profile
 # the methods part is required if you are using a form 
@@ -47,11 +52,12 @@ def profileEdit():
             currUser.save()
         # Then sends the user to their profle page
         if current_user.fname:
-            print(current_user.college.name)
+            print(current_user.name)
         else:
          print("No college associated with current user.")
 
-        return redirect(url_for('myProfile'))
+
+        return redirect(url_for('myProfile'),currUser=currUser)
 
     # If the form was not submitted this prepopulates a few fields
     # then sends the user to the page with the edit profile form
@@ -89,6 +95,7 @@ def collegeEdit():
 
     if form.validate_on_submit():
         print("college form validated")
+        print(current_user.name)
         if currUser:
             # update the existing college record
             currUser.update(
@@ -99,6 +106,18 @@ def collegeEdit():
                 tech_academy=form.tech_academy.data,
                 tags=form.tags.data
             )
+            
+
+    # update the current user object with the new values
+            current_user.name = currUser.name
+            current_user.state = currUser.state
+            current_user.major = currUser.major
+            current_user.tech_grad_year = currUser.tech_grad_year
+            current_user.tech_academy = currUser.tech_academy
+            current_user.tags = currUser.tags
+
+    # save the updates
+            currUser.save()
         else:
             # create a new college record for the current user
             print("college form didn't validate")
@@ -111,12 +130,14 @@ def collegeEdit():
                 tech_academy=form.tech_academy.data,
                 tags=form.tags.data
             )
+            
         if form.image.data:
             if currUser.image:
                 currUser.image.delete()
             currUser.image.put(form.image.data, content_type='image/jpeg')
         currUser.save()
-        print(current_user.college.name)
+        print(currUser.name)
+        print(current_user.name)
         return redirect(url_for('myProfile'))
 
     return render_template('collegeform.html', form=form)

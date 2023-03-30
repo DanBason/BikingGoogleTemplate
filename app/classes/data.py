@@ -1,15 +1,3 @@
-# This is where all the database collections are defined. A collection is a place to hold a defined 
-# set of data like Users, Blogs, Comments. Collections are defined below as classes. Each class name is 
-# the name of the data collection and each item is a data 'field' that stores a piece of data.  Data 
-# fields have types like IntField, StringField etc.  This uses the Mongoengine Python Library. When 
-# you interact with the data you are creating an onject that is an instance of the class.
-
-from sys import getprofile
-from tokenize import String
-from typing import KeysView
-from xmlrpc.client import Boolean
-import uuid
-from setuptools import SetuptoolsDeprecationWarning
 from app import app
 from flask import flash
 from flask_login import UserMixin
@@ -18,10 +6,27 @@ from flask_mongoengine import Document
 import datetime as dt
 import jwt
 from time import time
-from bson.objectid import ObjectId
+
+
+class College(Document):
+    name = StringField()
+    state = StringField()
+    image = FileField()
+    major = StringField()
+    tech_grad_year = IntField()
+    tech_academy = StringField()
+    tags = StringField()
+    user = ReferenceField('User')
+    create_date = DateTimeField(default=dt.datetime.utcnow)
+    modify_date = DateTimeField()
+    # user = ReferenceField('User', reverse_delete_rule=CASCADE)
+    meta = {
+        'ordering': ['-create_date']
+    }
+
 
 class User(UserMixin, Document):
-    create_date = DateTimeField(defaultdefault=dt.datetime.utcnow)
+    create_date = DateTimeField(default=dt.datetime.utcnow)
     gid = StringField(sparse=True, unique=True)
     gname = StringField()
     gprofile_pic = StringField()
@@ -30,31 +35,23 @@ class User(UserMixin, Document):
     lname = StringField()
     email = EmailField()
     image = FileField()
-    prononuns = StringField()
-    role = ReferenceField('College',reverse_delete_rule=CASCADE)
-    name = ReferenceField('College',reverse_delete_rule=CASCADE)
-    state = ReferenceField('College',reverse_delete_rule=CASCADE)
-    image = ReferenceField('College',reverse_delete_rule=CASCADE)
-    major = ReferenceField('College',reverse_delete_rule=CASCADE)
-    image = ReferenceField('College',reverse_delete_rule=CASCADE)
-    tech_grad_year = ReferenceField('College',reverse_delete_rule=CASCADE)
-    tech_academy = ReferenceField('College',reverse_delete_rule=CASCADE)
-    tags = ReferenceField('College',reverse_delete_rule=CASCADE)
-
-
+    pronouns = StringField()
+    role = StringField()
+    name = ReferenceField('College', reverse_delete_rule=CASCADE)
+    state = ReferenceField('College', reverse_delete_rule=CASCADE)
+    major = ReferenceField('College', reverse_delete_rule=CASCADE)
+    tech_grad_year = ReferenceField('College', reverse_delete_rule=CASCADE)
+    tech_academy = ReferenceField('College', reverse_delete_rule=CASCADE)
+    tags = ReferenceField('College', reverse_delete_rule=CASCADE)
     userID = IntField()
-    
-
-    
 
     meta = {
-        'ordering': ['lname','fname']
+        'ordering': ['lname', 'fname']
     }
 
-   
-    
+
 class Blog(Document):
-    author = ReferenceField('User',reverse_delete_rule=CASCADE) 
+    author = ReferenceField('User', reverse_delete_rule=CASCADE) 
     subject = StringField()
     content = StringField()
     tag = StringField()
@@ -62,11 +59,12 @@ class Blog(Document):
     modify_date = DateTimeField()
 
     meta = {
-        'ordering': ['-createdate']
+        'ordering': ['-create_date']
     }
+
 
 class Question(Document):
-    author = ReferenceField('User',reverse_delete_rule=CASCADE) 
+    author = ReferenceField('User', reverse_delete_rule=CASCADE) 
     subject = StringField()
     content = StringField()
     tag = StringField()
@@ -74,51 +72,31 @@ class Question(Document):
     modify_date = DateTimeField()
 
     meta = {
-        'ordering': ['-createdate']
+        'ordering': ['-create_date']
     }
 
+
 class Comment(Document):
-    # Line 63 is a way to access all the information in Course and Teacher w/o storing it in this class
-    author = ReferenceField('User',reverse_delete_rule=CASCADE) 
-    question = ReferenceField('Question',reverse_delete_rule=CASCADE)
-    blog = ReferenceField('Blog',reverse_delete_rule=CASCADE)
-    # This could be used to allow comments on comments
-    comment = ReferenceField('Comment',reverse_delete_rule=CASCADE)
-    # Line 68 is where you store all the info you need but won't find in the Course and Teacher Object
+    author = ReferenceField('User', reverse_delete_rule=CASCADE) 
+    question = ReferenceField('Question', reverse_delete_rule=CASCADE)
+    blog = ReferenceField('Blog', reverse_delete_rule=CASCADE)
+    comment = ReferenceField('Comment', reverse_delete_rule=CASCADE)
     content = StringField()
     create_date = DateTimeField(default=dt.datetime.utcnow)
     modify_date = DateTimeField()
 
     meta = {
-        'ordering': ['-createdate']
-    }
-
-class College(Document):
-    name = StringField()
-    state = StringField()
-    image = FileField()
-    major = StringField()
-    image = FileField()
-    tech_grad_year = IntField()
-    tech_academy = StringField()
-    tags = StringField()
-    create_date = DateTimeField(default=dt.datetime.utcnow)
-    modify_date = DateTimeField()
-    user = ReferenceField('User', reverse_delete_rule=CASCADE)
-    meta = {
-        'ordering': ['-createdate']
+        'ordering': ['-create_date']
     }
 
 
 class Message(Document):
     content = StringField()
-    recipientid = ReferenceField('User',reverse_delete_rule=CASCADE)
-    senderid = ReferenceField('User',reverse_delete_rule=CASCADE)
-    creator = ReferenceField('User',reverse_delete_rule=CASCADE)
+    recipientid = ReferenceField('User', reverse_delete_rule=CASCADE)
+    senderid = ReferenceField('User', reverse_delete_rule=CASCADE)
+    creator = ReferenceField('User', reverse_delete_rule=CASCADE)
     create_date = DateTimeField(default=dt.datetime.utcnow)
 
     meta = {
-        'ordering': ['-createdate']
+        'ordering': ['-create_date']
     }
-
-

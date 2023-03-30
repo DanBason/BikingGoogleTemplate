@@ -1,50 +1,38 @@
 {% extends 'base.html' %}
 
 {% block body %}
-<h1 class="display-1">
+<h1 class="display-1 d-flex align-items-center justify-content-between">
     My Profile
     <a href="/myprofile/edit">
-        <img width="40" src="/static/edit.png">
+        <img width="40" src="/static/edit.png" alt="Edit profile">
     </a>
 </h1>
 <div class="row">
-    <div class="col-2">
+    <div class="col-3">
         {% if current_user.image %}
-            <img class="img-thumbnail img-fluid" src="data:image;base64,{{base64encode(current_user.image.read())}}"> <br>
+            <img class="img-thumbnail img-fluid" src="data:image;base64,{{base64encode(current_user.image.read())}}" alt="Profile image">
         {% else %}
-            <img class="img-thumbnail" width = "100" src="/static/bdog.png">
+            <img class="img-thumbnail" width="100" src="/static/bdog.png" alt="Default profile image">
         {% endif %} 
     </div>
     <div class="col display-5">
-        
-        
-        
         {% if current_user.fname and current_user.lname %}
-            Name: {{current_user.fname}}  {{current_user.lname}} <br>
-        {% else %}
-            Google User Name: {{current_user.gname}} <br>
-        {% endif %}
-        College: {{current_user.college.name}} <br>
-        State: {{current_user.college.state}} <br>
-        Role: {{current_user.role}} <br>
-        Email: {{current_user.email}} <br>
-
-        {% if current_user.role == 'college_student' %}
-            Test
-            <h2>College Information:</h2>
-            <br>
-            College: {{current_user.college.name}} <br>
-            State: {{current_user.college.state}} <br>
-            Major: {{current_user.college.major}} <br>
-            Tech Graduation Year: {{current_user.college.tech_grad_year}} <br>
-            Former Academy: {{current_user.college.tech_academy}} <br>
-
-        
+            <p><strong>Name:</strong> {{current_user.fname}}  {{current_user.lname}}</p>
+            <p><strong>Role:</strong> {{current_user.role}}</p>
+            <p><strong>Email:</strong> {{current_user.email}}</p>
+            {% if current_user.role == 'College Student' %}
+                
             
-
+                <br><p><strong>College:</strong> {{college.name}}</p>
+                <p><strong>State:</strong> {{college.state}}</p>
+                <p><strong>Major:</strong> {{college.major}}</p>
+                <p><strong>Tech Graduation Year:</strong> {{college.tech_grad_year}}</p>
+                <p><strong>Former Academy:</strong> {{college.tech_academy}}</p>
+            {% endif %}
+        {% else %}
+            <p><strong>Google User Name:</strong> {{current_user.gname}}</p>
+            <p><strong>Email:</strong> {{current_user.email}}</p>
         {% endif %}
     </div>
 </div>
-
-
 {% endblock %}

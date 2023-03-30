@@ -37,3 +37,4 @@ def base64encode(img):
 app.jinja_env.globals.update(base64encode=base64encode)
 
 from .routes import *
+

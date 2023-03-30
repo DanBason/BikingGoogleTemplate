@@ -29,7 +29,7 @@ def parents():
 # the route to all the displayed alumni data
 @app.route('/student_view')
 def college_students():
-    students = User.objects(role='college student')
+    students = User.objects(role='College Student')
     return render_template('student_view.html', students=students)
 
 
