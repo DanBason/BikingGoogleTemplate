@@ -28,7 +28,6 @@ def parents():
 
 # the route to all the displayed alumni data
 @app.route('/student_view')
-@app.route('/student_view')
 def college_students():
     students = User.objects(role='College Student').all()
     for student in students:
