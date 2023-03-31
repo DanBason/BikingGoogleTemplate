@@ -149,7 +149,6 @@ def user_colleges(user_id):
     colleges = College.objects(user=user)
     college_students = User.objects.filter(role='College Student')
     return render_template('user_profile.html', user=user, colleges=colleges, college_students=college_students)
-
 @app.context_processor
 def base():
      form = SearchForm()
