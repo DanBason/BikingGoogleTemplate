@@ -146,9 +146,8 @@ def collegeEdit():
 @app.route('/colleges/<user_id>')
 def user_colleges(user_id):
     user = User.objects.get(id=user_id)
-    colleges = College.objects(user=user)
-    college_students = User.objects.filter(role='College Student')
-    return render_template('user_profile.html', user=user, colleges=colleges, college_students=college_students)
+    college_student = College.objects(user=user)
+    return render_template('user_profile.html', user=user, college_student=college_student)
 @app.context_processor
 def base():
      form = SearchForm()
