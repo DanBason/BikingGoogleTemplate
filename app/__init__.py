@@ -11,9 +11,14 @@ import certifi
 from app.utils.secrets import getSecrets
 from flask_moment import Moment
 import base64
+from flask_socketio import SocketIO
 
 # Flask app setup
 app = Flask(__name__)
+socketio = SocketIO(app)
+# socketio setup
+
+
 app.secret_key = os.environ.get("FLASK_SECRET_KEY") or os.urandom(24)
 
 # Configuration
