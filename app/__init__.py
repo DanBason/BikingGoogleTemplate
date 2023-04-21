@@ -13,9 +13,11 @@ from flask_moment import Moment
 import base64
 from flask_socketio import SocketIO
 
+
 # Flask app setup
 app = Flask(__name__)
 socketio = SocketIO(app)
+
 # socketio setup
 
 
