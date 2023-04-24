@@ -3,5 +3,34 @@
 {% extends 'base.html' %}
 
 {% block body %}
-<h1>Messageing with {{selected_student}}</h1>
+
+
+
+
+<div class="container">
+  <h1>Message Info</h1>
+  <form method="POST" enctype="multipart/form-data">
+    {{ form.hidden_tag() }}
+    <div class="form-group">
+      {{ form.message.label() }}
+      {{ form.message(class="form-control") }}
+      {% for error in form.message.errors %}
+      <span class="text-danger">{{ error }}</span>
+      {% endfor %}
+    </div><br>
+    <div class="form-group">
+        {{ form.recipient.label(class="form-control-label") }}
+        {{ form.recipient(class="form-control form-control-lg") }}
+      </div><br>
+
+    
+    
+    
+    <button type="submit" class="btn btn-primary" >Submit</button>
+    
+    
+  </form>
+</div>
+
+
 {% endblock %}

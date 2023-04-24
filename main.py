@@ -1,4 +1,4 @@
-from app import app
+from app import app, socketio
 from flask_socketio import SocketIO
 import os
 
@@ -13,7 +13,7 @@ import os
 #     app.run(debug="True",use_reloader=True, ssl_context=('cert.pem', 'key.pem'))
 
 
-socketio = SocketIO(app)
+# socketio = SocketIO(app)
 
 if __name__ == "__main__":
     socketio.run(app, debug=True, use_reloader=True, ssl_context=('cert.pem', 'key.pem'))

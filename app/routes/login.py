@@ -1,7 +1,7 @@
 
 
 import json
-from app import app, login_manager
+from app import app, login_manager, socketio
 from flask import redirect, request, url_for, flash
 from flask_login import (
     current_user,
@@ -14,7 +14,7 @@ import requests
 from app.classes.data import User
 from app.utils.secrets import getSecrets
 import mongoengine.errors
-
+from flask_socketio import join_room
 
 secrets = getSecrets()
 
@@ -57,6 +57,7 @@ def login():
 
 @app.route("/login/callback")
 def callback():
+    
 
     code = request.args.get("code")
 
@@ -128,6 +129,9 @@ def callback():
     login_user(thisUser)
 
     # Send user back to homepage
+    if not thisUser.username in socketio.server.manager.rooms:
+        room = (thisUser.id)
+   
     return redirect(url_for("index"))
 
 

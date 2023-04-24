@@ -1,0 +1,26 @@
+<!-- This is a blank template.  You can copy this to make a new template page. -->
+
+{% extends 'base.html' %}
+
+{% block body %}
+<h1>Welcome to your inbox, {{fname}}!</h1>
+<div class="message-container">
+    
+</div>
+
+<script>
+  // Connect to the WebSocket
+  var socket = io.connect('http://' + document.domain + ':' + location.port);
+
+  // When a message is received, append it to the message container
+  socket.on('private_message', function(msg) {
+    var messageElement = document.createElement('div');
+    messageElement.className = 'message';
+    messageElement.innerHTML = msg.message;
+    document.querySelector('.message-container').appendChild(messageElement);
+  });
+</script>
+
+{% endblock %}
+
+  

@@ -58,5 +58,8 @@ class CollegeForm(FlaskForm):
     submit = SubmitField('Post')
 
 class MessageForm(FlaskForm):
-    content = TextAreaField('Message', validators=[DataRequired()])
+    message = TextAreaField('Message', validators=[DataRequired()])
+    
+    recipient = SelectField('Recipient', choices=[], validators=[DataRequired()])
+    
    
