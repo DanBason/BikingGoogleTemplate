@@ -46,10 +46,12 @@ def message():
 
     return render_template('privatemessage.html', form=form)
 
+socketio.on('/message')
+def handle_message(data):
 
+    messsage_content = ('received message: ' + data)
+    return render_template('inboxmy.html',messages = messsage_content)
 
-@socketio.on('private_message')
-def handle_private_message(data):
-    message = data['message']
-    recipient_username = request.sid  
-    socketio.emit('private_message', {'message': message}, room=recipient_username)
+@socketio.on('my event')
+def handle_my_custom_event(json):
+    print('received json: ' + str(json))

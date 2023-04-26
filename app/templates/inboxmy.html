@@ -9,11 +9,11 @@
 </div>
 
 <script>
-  // Connect to the WebSocket
-  var socket = io.connect('http://' + document.domain + ':' + location.port);
+  
+  
 
-  // When a message is received, append it to the message container
-  socket.on('private_message', function(msg) {
+  
+  socket.on('/message', function(msg) {
     var messageElement = document.createElement('div');
     messageElement.className = 'message';
     messageElement.innerHTML = msg.message;
