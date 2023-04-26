@@ -54,3 +54,5 @@ A page for parents, displays the purpose of the page and how parents and kids co
 
 
 
+
+<!-- <a href="{{ url_for('message_validate') }}"><button class="button">Message</button></a> -->

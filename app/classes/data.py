@@ -6,6 +6,7 @@ from flask_mongoengine import Document
 import datetime as dt
 import jwt
 from time import time
+from wtforms import SelectField
 
 
 class College(Document):
@@ -91,10 +92,10 @@ class Comment(Document):
 
 
 class Message(Document):
-    content = StringField()
-    recipientid = ReferenceField('User', reverse_delete_rule=CASCADE)
-    senderid = ReferenceField('User', reverse_delete_rule=CASCADE)
-    creator = ReferenceField('User', reverse_delete_rule=CASCADE)
+    message = StringField()
+    recipient_username = SelectField()
+    recipient_id = StringField()
+    author = ReferenceField('User', reverse_delete_rule=CASCADE)
     create_date = DateTimeField(default=dt.datetime.utcnow)
 
     meta = {
