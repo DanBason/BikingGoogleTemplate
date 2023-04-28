@@ -56,3 +56,21 @@ A page for parents, displays the purpose of the page and how parents and kids co
 
 
 <!-- <a href="{{ url_for('message_validate') }}"><button class="button">Message</button></a> -->
+
+
+for student_view.html:
+{% if college.author == current_user %}
+                  <div class="col-2">
+                  <form action="/college/delete/{{ college.id }}" method="post">
+                  <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                  </form>
+                  <form action="/college/edit/{{ college.id }}" method="post">
+                  <button type="submit" class="btn btn-sm btn-success">Edit</button>
+                  </form>
+                  </div>
+                {% else %}
+                  <div class="col-2"></div>
+                  <td>{{ college.name }}</td>
+                  <td>{{ college.tech_grad_year }}</td>
+                  <td>{{ college.state }}</td>  
+                {% endif %}

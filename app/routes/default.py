@@ -37,7 +37,7 @@ def parents():
 def college_students():
     students = User.objects(role='College Student').all()
     for student in students:
-        student.colleges = College.objects(user=student).all()
+        student.colleges = College.objects(author=student).all()
     return render_template('student_view.html', students=students)
 
 

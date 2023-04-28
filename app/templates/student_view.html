@@ -6,7 +6,8 @@
     <table class="table">
       <thead>
         <tr>
-          <th>Username</th>
+          
+          
           <th>Name</th>
           <th>Email</th>
           <th>College Name</th>
@@ -17,15 +18,15 @@
       <tbody>
         {% for student in students %}
           <tr>
-            <td>{{ student.username }}</td>
             <td><a href="/colleges/{{ student.id }}">{{ student.fname }} {{ student.lname }}</a></td>
             <td>{{ student.email }}</td>
             {% for college in student.colleges %}
               {% if loop.first %}
-                <td>{{ college.name }}</td>
-                <td>{{ college.tech_grad_year }}</td>
-                <td>{{ college.state }}</td>  
-              {% else %}
+              <td>{{ college.name }}</td>
+              <td>{{ college.tech_grad_year }}</td>
+              <td>{{ college.state }}</td>
+                
+            {% else %}
                 <tr>
                   <td></td>
                   <td></td>

@@ -16,7 +16,9 @@ def myProfile():
     # This sends the user to their profile page which renders the 'profilemy.html' template
     
     # Query the College collection for the current user's college
-    college = College.objects(user=current_user).first()
+    
+    college = College.objects(author=current_user).first()
+
 
     return render_template('profilemy.html', college=college)
    
@@ -68,86 +70,19 @@ def profileEdit():
     return render_template('profileform.html', form=form)
 
 # similar to profile, but for college data
-@app.route('/mycollege')
-# This line tells the user that they cannot access this without being loggedin
-@login_required
-# This is the function that is run when the route is triggered\
-def myCollege():
-    form = CollegeForm()
-    if form.validate_on_submit():
-        # handle form submission here
-        pass
-    return render_template('collegeform.html', form=form)
+# @app.route('/mycollege')
+# # This line tells the user that they cannot access this without being loggedin
+# @login_required
+# # This is the function that is run when the route is triggered\
+# def myCollege():
+#     form = CollegeForm()
+#     if form.validate_on_submit():
+#         # handle form submission here
+#         pass
+#     return render_template('collegeform.html', form=form)
 
-@app.route('/mycollege/edit', methods=['GET','POST'])
-@login_required
-def collegeEdit():
-    form = CollegeForm()
-    currUser = College.objects(user=current_user).first()
-    if currUser:
-        # pre-populate the form with the current user's college data
-        form.name.data = currUser.name
-        form.state.data = currUser.state
-        form.major.data = currUser.major
-        form.tech_grad_year.data = currUser.tech_grad_year
-        form.tech_academy.data = currUser.tech_academy
-        form.tags.data = currUser.tags
 
-    if form.validate_on_submit():
-        print("college form validated")
-        print(current_user.name)
-        if currUser:
-            # update the existing college record
-            currUser.update(
-                name=form.name.data,
-                state=form.state.data,
-                major=form.major.data,
-                tech_grad_year=form.tech_grad_year.data,
-                tech_academy=form.tech_academy.data,
-                tags=form.tags.data
-            )
-            
 
-    # update the current user object with the new values
-            current_user.name = currUser.name
-            current_user.state = currUser.state
-            current_user.major = currUser.major
-            current_user.tech_grad_year = currUser.tech_grad_year
-            current_user.tech_academy = currUser.tech_academy
-            current_user.tags = currUser.tags
-
-    # save the updates
-            currUser.save()
-        else:
-            # create a new college record for the current user
-            print("college form didn't validate")
-            currUser = College(
-                user=current_user,
-                name=form.name.data,
-                state=form.state.data,
-                major=form.major.data,
-                tech_grad_year=form.tech_grad_year.data,
-                tech_academy=form.tech_academy.data,
-                tags=form.tags.data
-            )
-            
-        if form.image.data:
-            if currUser.image:
-                currUser.image.delete()
-            currUser.image.put(form.image.data, content_type='image/jpeg')
-        currUser.save()
-        print(currUser.name)
-        print(current_user.name)
-        return redirect(url_for('myProfile'))
-
-    return render_template('collegeform.html', form=form)
-
-# this is the route to the alumni profile page
-@app.route('/colleges/<user_id>')
-def user_colleges(user_id):
-    user = User.objects.get(id=user_id)
-    college_student = College.objects(user=user)
-    return render_template('user_profile.html', user=user, college_student=college_student)
 @app.context_processor
 def base():
      form = SearchForm()
