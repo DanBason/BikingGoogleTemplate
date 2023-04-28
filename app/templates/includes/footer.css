@@ -1,8 +1,8 @@
 .footer {
     position: absolute;
     bottom: 0;
-    background-color: #948f8f;
-    color: aqua;
+    background-color:burlywood;
+    color: rgb(255, 255, 255);
     font-family: Arial, sans-serif;
     font-size: 20px;
     text-align: center;
@@ -13,6 +13,6 @@
 .bg-light.py-4 {
     padding: 10px 0; /* Reduce top/bottom padding */
     height: 50px; /* Reduce height */
-    background-color: #333;
+    background-color: rgb(19, 19, 34);
   }
 
