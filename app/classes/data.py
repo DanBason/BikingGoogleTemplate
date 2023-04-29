@@ -17,7 +17,7 @@ class College(Document):
     tech_grad_year = IntField()
     tech_academy = StringField()
     tags = StringField()
-    author = ReferenceField('User')
+    user = ReferenceField('User')
     create_date = DateTimeField(default=dt.datetime.utcnow)
     modify_date = DateTimeField()
     # user = ReferenceField('User', reverse_delete_rule=CASCADE)

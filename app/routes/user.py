@@ -17,7 +17,7 @@ def myProfile():
     
     # Query the College collection for the current user's college
     
-    college = College.objects(author=current_user).first()
+    college = College.objects(user=current_user).first()
 
 
     return render_template('profilemy.html', college=college)

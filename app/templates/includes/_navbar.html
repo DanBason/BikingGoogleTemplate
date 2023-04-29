@@ -29,7 +29,7 @@
       <form method="POST" action = {{url_for('search')}} class="d-flex">
         {{form.hidden_tag()}}
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search", name = "searched">
-        <button class="btn btn-outline-success" type="submit">Search</button>
+        <button class="btn btn-outline-dark" type="submit">Search</button>
       </form>
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
         {% if current_user.is_anonymous %}
