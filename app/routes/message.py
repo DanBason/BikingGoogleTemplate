@@ -9,6 +9,7 @@ from datetime import datetime
 
 
 
+
 # @app.route('/message_page', methods=['GET', 'POST'])
 # @login_required
 # def message_new():
@@ -20,38 +21,27 @@ from datetime import datetime
 #     return render_template('privatemessage.html', form=form)
 
 
+from flask_login import current_user, login_required
+from app.classes.data import Message
+from datetime import datetime
+
 @app.route('/message', methods=['GET', 'POST'])
 @login_required
 def message():
-    form = MessageForm()
-
-    college_students = list(User.objects(role='College Student'))
-    college_student_choices = [(str(user.id), f"{user.fname} {user.lname}") for user in college_students]
-
-    form.recipient.choices = college_student_choices
-
-    if form.validate_on_submit():
-        recipient_id = form.recipient.data
-        newMessage = Message(
-            message=form.message.data,
+    if request.method == 'POST':
+        recipient_id = request.form['recipient']
+        message = request.form['message']
+        new_message = Message(
+            message=message,
             recipient_id=recipient_id,
             author=current_user.id,
             create_date=datetime.utcnow()
         )
-
-        newMessage.save()
-        socketio.emit('private_message', {'message': form.message.data}, room=recipient_id)
+        new_message.save()
+        socketio.emit('private_message', {'message': message}, room=recipient_id)
         flash('Your message has been sent!', 'success')
         return redirect(url_for('index'))
+    else:
+        college_students = User.objects(role='College Student')
+        return render_template('message.html', college_students=college_students)
 
-    return render_template('privatemessage.html', form=form)
-
-socketio.on('/message')
-def handle_message(data):
-
-    messsage_content = ('received message: ' + data)
-    return render_template('inboxmy.html',messages = messsage_content)
-
-@socketio.on('my event')
-def handle_my_custom_event(json):
-    print('received json: ' + str(json))

@@ -150,7 +150,7 @@ def collegeEdit():
 @app.route('/colleges/<user_id>')
 def user_colleges(user_id):
     user = User.objects.get(id=user_id)
-    college_student = College.objects(author=user)
+    college_student = College.objects(user=user)
     return render_template('user_profile.html', user=user, college_student=college_student)
 
 @app.route('/college/delete/<collegeID>',methods = ['POST'])
